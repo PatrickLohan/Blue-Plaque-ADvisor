@@ -6,12 +6,14 @@
 </template>
 
 <script>
-import Map from './components/Map.vue'
+import VueMap from './components/VueMap.vue'
+import SideBar from '@/components/SideBar'
 
 export default {
   name: 'app',
   components: {
-    Map
+    VueMap,
+    SideBar
   }
 }
 </script>
