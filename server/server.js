@@ -11,8 +11,8 @@ MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
     const db = client.db('');
     const plaquesLocations = db.collection('plaques');
-    const plaquesRouter = createRouter(plaquesLocations);
-    app.use('/api/plaques', plaquesRouter);
+    // const plaquesRouter = createRouter(plaquesLocations);
+    // app.use('/api/plaques', plaquesRouter);
   })
   .catch(console.err);
 
