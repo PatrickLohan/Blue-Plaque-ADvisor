@@ -1,5 +1,4 @@
-# plaque-advisor
-
+# Blue Plaque ADvisor
 
 # Educational App
 
