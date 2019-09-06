@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import {eventBus} from './main.js';
 import VueMap from './components/VueMap.vue'
 import SideBar from '@/components/SideBar'
 import PlaqueService from '@/services/PlaqueService'
@@ -14,7 +15,8 @@ export default {
   name: 'app',
   data(){
     return {
-      locations: []
+      locations: [],
+      selectedLocation: {}
     }
   },
   components: {
@@ -23,6 +25,11 @@ export default {
   },
   mounted(){
     this.fetchData();
+
+    eventBus.$on('location-selected', (location) => {
+      let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude && location.lng === plaque.longitude);
+      this.selectedLocation = foundLocation[0];
+    })
   },
   methods: {
     fetchData(){

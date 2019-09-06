@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {eventBus} from '../main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 
@@ -35,14 +36,27 @@ export default {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
         if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          L.marker([this.locations[i].latitude, this.locations[i].longitude])
+          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].subjects, alt: this.locations[i].title})
           .addTo(this.glasgowMap)
-          .bindPopup("<b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address, {maxWidth: 200, minWidth: 200})
-        }
+          .bindPopup("<div id=" + this.locations[i]._id + " @click='handleClick'><b>" + this.locations[i].title + "</b><br />"
+          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200})
+          .on("click", function(e) {
+            let location = e.latlng;
+            //console.log(location.lat); // just the value
+            //console.log(location.lng); // just the value
+            Object.values(location); // returns [55.86339, -4.25607]
+            eventBus.$emit('location-selected', location)
+          })
 
+
+        }
       }
-    }
+    },
+    handleClick(e) {
+        let location = e.latlng;
+        console.log(location);
+      }
+
 
 
 
@@ -69,18 +83,9 @@ export default {
 <style lang="css" scoped>
 @import "~leaflet/dist/leaflet.css";
 
-
 #glasgowMap {
   width: 100vw;
   height: 100vh;
-
-}
-
-#logoContainer {
-    position: static;
-    z-index: 1;
-    top: 15px;
-    left: 15px;
 }
 
 </style>
