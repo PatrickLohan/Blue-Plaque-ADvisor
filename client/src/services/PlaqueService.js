@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/api/plaqueLocations/'
+const baseURL = 'http://localhost:3000/api/plaques/'
 
 
 export default {
@@ -6,7 +6,7 @@ export default {
     return fetch(baseURL)
     .then(res => res.json())
   },
-  postLocations(payload){
+  postLocations(payload)
     return fetch(baseURL, {
       method: 'POST',
       body: JSON.stringify(payload),
