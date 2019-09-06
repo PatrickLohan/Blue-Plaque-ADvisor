@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
+    <div id="logoContainer">
+     <img src="./assets/logo.png" width="70">
+   </div>
     <VueMap />
   </div>
 </template>
@@ -19,12 +21,19 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .leaflet-popup-content-wrapper {
@@ -51,6 +60,13 @@ export default {
 
 .popupMessageHidden {
   display: none;
+}
+
+#logoContainer {
+    position: static;
+    z-index: 100;
+    top: 15px;
+    left: 15px;
 }
 
 </style>

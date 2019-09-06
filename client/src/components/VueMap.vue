@@ -43,6 +43,8 @@ export default {
     this.addMarker([55.865332,-4.258086], "Codeclan Glasgow");
     this.addMarker([55.946910,-3.202068], "Codeclan Edinburgh");
     this.addMarker(this.geojsonFeature.geometry.coordinates, this.geojsonFeature.properties.name);
+
+
   },
   methods: {
     addMarker(coords, message){
@@ -77,4 +79,12 @@ export default {
   height: 100vh;
 
 }
+
+#logoContainer {
+    position: static;
+    z-index: 1;
+    top: 15px;
+    left: 15px;
+}
+
 </style>
