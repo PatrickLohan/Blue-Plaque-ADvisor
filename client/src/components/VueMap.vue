@@ -35,12 +35,11 @@ export default {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
         if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          L.marker([this.locations[i].latitude, this.locations[i].longitude])
+          L.marker([this.locations[i].latitude, this.locations[i].longitude], {alt: this.locations[i].title})
           .addTo(this.glasgowMap)
           .bindPopup("<b>" + this.locations[i].title + "</b><br />"
           + this.locations[i].address, {maxWidth: 200, minWidth: 200})
         }
-
       }
     }
 
