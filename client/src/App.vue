@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <SideBar/>
-    <VueMap />
+    <VueMap :locations="locations"/>
   </div>
 </template>
 
