@@ -6,7 +6,7 @@ export default {
     return fetch(baseURL)
     .then(res => res.json())
   },
-  postLocations(payload)
+  postLocations(payload){
     return fetch(baseURL, {
       method: 'POST',
       body: JSON.stringify(payload),
