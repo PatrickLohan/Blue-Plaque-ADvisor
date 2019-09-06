@@ -1,13 +1,13 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
-      <PlaqueSearch/>
+      <!-- <PlaqueSearch/> -->
     </div>
   </div>
 </template>
 
 <script>
-import PlaqueSearch from './PlaqueSearch'
+import PlaqueSearch from './PlaqueSearch';
 
 
 export default {
