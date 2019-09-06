@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div id="logoContainer">
-     <img src="./assets/logo.png" width="70">
-   </div>
+    <SideBar/>
     <VueMap />
   </div>
 </template>
@@ -10,12 +8,27 @@
 <script>
 import VueMap from './components/VueMap.vue'
 import SideBar from '@/components/SideBar'
+import PlaqueService from '@/services/PlaqueService'
 
 export default {
   name: 'app',
+  data(){
+    return {
+      locations: []
+    }
+  },
   components: {
     VueMap,
     SideBar
+  },
+  mounted(){
+    this.fetchData();
+  },
+  methods: {
+    fetchData(){
+      PlaqueService.getLocations()
+      .then(locations => this.locations = locations);
+    }
   }
 }
 </script>
