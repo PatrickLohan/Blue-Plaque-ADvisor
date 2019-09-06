@@ -6,13 +6,12 @@ app.use(parser.json());
 app.use(cors());
 
 const MongoClient = require('mongodb').MongoClient;
-const createRouter = require('./helpers/create_router.js');
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
-    const db = client.db('guests');
-    const plaquesCollection = db.collection('plaques');
-    const plaquesRouter = createRouter(plaquesCollection);
+    const db = client.db('');
+    const plaquesLocations = db.collection('plaques');
+    const plaquesRouter = createRouter(plaquesLocations);
     app.use('/api/plaques', plaquesRouter);
   })
   .catch(console.err);
