@@ -1,18 +1,19 @@
 const express = require('express');
-const app =  express();
+const app = express();
 const parser = require('body-parser');
 const cors = require('cors');
 app.use(parser.json());
 app.use(cors());
 
 const MongoClient = require('mongodb').MongoClient;
+const createRouter = require('./helpers/create_router.js');
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
-    const db = client.db('');
-    const plaquesLocations = db.collection('plaques');
-    // const plaquesRouter = createRouter(plaquesLocations);
-    // app.use('/api/plaques', plaquesRouter);
+    const db = client.db('plaques');
+    const plaquesLocations = db.collection('plaquesLocations');
+    const plaquesRouter = createRouter(plaquesLocations);
+    app.use('/api/plaques', plaquesRouter);
   })
   .catch(console.err);
 
