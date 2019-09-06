@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <VueMap msg="Welcome to Your Vue.js App"/>
+    <VueMap />
   </div>
 </template>
 
@@ -25,6 +25,32 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
+
+.leaflet-popup-content-wrapper {
+  color: #fff;
+  background-color: #477CDE;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.leaflet-popup-tip {
+ display: none;
+}
+
+.leaflet-popup {
+  position: relative;
+  top: 30px;
+  margin-left: -120px;
+}
+
+.popupMessage:hover {
+  color: lightgrey;
+  text-shadow: 0 0 5px white;
+}
+
+.popupMessageHidden {
+  display: none;
+}
+
 </style>
