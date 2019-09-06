@@ -1,9 +1,11 @@
 <template lang="html">
   <div id="glasgowMap">
+      {{showLocations(this.locations)}}
   </div>
 </template>
 
 <script>
+import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 
 export default {
@@ -17,52 +19,47 @@ export default {
       zoom: 12,
       center: [55.86279, -4.25424],
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }
   },
   mounted() {
-      this.glasgowMap = L.map('glasgowMap');
-      // this.glasgowMap.addEventListener('click', (e) => {
-      //   let coords = [e.latlng.lat, e.latlng.lng]
-      //   this.addMarker(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
-      // });
-      this.glasgowMap.setView(this.center, this.zoom);
-      L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
-      // this.addMarker([55.865332,-4.258086], "Codeclan Glasgow");
-      // this.addMarker([55.946910,-3.202068], "Codeclan Edinburgh");
-      // this.addMarker(this.geojsonFeature.geometry.coordinates, this.geojsonFeature.properties.name);
-      // for (let i = 0; i < this.plaques.length; i++) {
-      //   this.addMarker([this.plaques[i].latitude, this.plaques[i].longitude], this.plaques[i].title);
-      // };
-      this.showLocations(this.locations);
-    },
-    methods: {
-      // addMarker(coords, message){
-      //   L.marker(coords).addTo(this.glasgowMap)
-      // .bindPopup("<b>" + message + "</b>" + "<br/><button type='button' @click='showMessage()'>Show More</button><div class='popupMessageHidden'>I am a popup.</div>", {maxWidth: 200, minWidth: 200}) },
-      showLocations(locations){
-        for (let i = 0; i < this.locations.length; i++) {
+    this.glasgowMap = L.map('glasgowMap');
+    // this.glasgowMap.addEventListener('click', (e) => {
+    //   let coords = [e.latlng.lat, e.latlng.lng]
+    //   this.addMarker(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
+    // });
+    this.glasgowMap.setView(this.center, this.zoom);
+    L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
+  },
+  methods: {
+    showLocations(){
+      for (let i = 0; i < this.locations.length; i++) {
+        if (this.locations[i].latitude || this.locations[i].longitude !== null) {
           L.marker([this.locations[i].latitude, this.locations[i].longitude])
           .addTo(this.glasgowMap)
-          // .bindPopup("<b>" + this.locations[i].title + "</b><br />"
-          // + this.locations[i].address, {maxWidth: 200, minWidth: 200})
+          .bindPopup("<b>" + this.locations[i].title + "</b><br />"
+          + this.locations[i].address, {maxWidth: 200, minWidth: 200})
         }
-      }
 
-      // function showMessage(marker) {
-      //
-      //   let popup = this.getPopup();
-      //   let content = popup.getContent();
-      //
-      //   if (content.includes("popupMessageHidden")) {
-      //     let newContent = content.replace(/popupMessageHidden/i, "popupMessage");
-      //     popup.setContent(newContent);
-      //     popup.update();
-      //   } else {
-      //     let newContent = content.replace(/popupMessage/i, "popupMessageHidden");
-      //     popup.setContent(newContent);
-      //     popup.update();
-      //   }
+      }
+    }
+
+
+
+    // function showMessage(marker) {
+    //
+    //   let popup = this.getPopup();
+    //   let content = popup.getContent();
+    //
+    //   if (content.includes("popupMessageHidden")) {
+    //     let newContent = content.replace(/popupMessageHidden/i, "popupMessage");
+    //     popup.setContent(newContent);
+    //     popup.update();
+    //   } else {
+    //     let newContent = content.replace(/popupMessage/i, "popupMessageHidden");
+    //     popup.setContent(newContent);
+    //     popup.update();
+    //   }
 
   }
 
