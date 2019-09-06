@@ -1,17 +1,19 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <Map msg="Welcome to Your Vue.js App"/>
+    <VueMap msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
 <script>
-import Map from './components/Map.vue'
+import VueMap from './components/VueMap.vue'
+import SideBar from '@/components/SideBar'
 
 export default {
   name: 'app',
   components: {
-    Map
+    VueMap,
+    SideBar
   }
 }
 </script>
