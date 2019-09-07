@@ -77,12 +77,6 @@ body {
  display: none;
 }
 
-/* .leaflet-popup {
-  position: relative;
-  top: 30px;
-  margin-left: -120px;
-}  */
-
 .popupMessage:hover {
   color: lightgrey;
   text-shadow: 0 0 5px white;
