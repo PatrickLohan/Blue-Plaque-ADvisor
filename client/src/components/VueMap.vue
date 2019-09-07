@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="glasgowMap">
-      {{showLocations(this.locations)}}
+    {{showLocations(this.locations)}}
   </div>
 </template>
 
@@ -20,15 +20,21 @@ export default {
       zoom: 12,
       center: [55.86279, -4.25424],
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      myLongitude: null,
+      myLatitude: null
     }
   },
   mounted() {
     this.glasgowMap = L.map('glasgowMap');
-    // this.glasgowMap.addEventListener('click', (e) => {
-    //   let coords = [e.latlng.lat, e.latlng.lng]
-    //   this.addMarker(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
-    // });
+
+    // Listener for clicks on new location
+    this.glasgowMap.addEventListener('click', (e) => {
+      let coords = [e.latlng.lat, e.latlng.lng]
+      this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
+    });
+    //end of Listener
+
     this.glasgowMap.setView(this.center, this.zoom);
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
   },
@@ -53,9 +59,17 @@ export default {
       }
     },
     handleClick(e) {
-        let location = e.latlng;
-        console.log(location);
-      }
+      let location = e.latlng;
+      console.log(location);
+    },
+    addLocation(coords, message) {
+      L.marker(coords).addTo(this.map)
+      .bindPopup(message)
+      this.myLongitude = coords[0];
+      this.myLatitude = coords[1];
+      console.log('myLongitude:', myLongitude);
+      console.log('myLatitude:', myLatitude);
+    }
 
 
 
