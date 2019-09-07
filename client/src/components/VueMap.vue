@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="glasgowMap">
-      {{showLocationsExtra(this.locations)}}
+      {{showLocations(this.locations)}}
   </div>
 </template>
 
@@ -30,6 +30,7 @@ export default {
     //   this.addMarker(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
     // });
     this.glasgowMap.setView(this.center, this.zoom);
+    this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
   },
   methods: {
@@ -42,30 +43,11 @@ export default {
           + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200})
           .on("click", function(e) {
             let location = e.latlng;
-            //console.log(location.lat); // just the value
-            //console.log(location.lng); // just the value
-            // Object.values(location); // returns [55.86339, -4.25607]
-            eventBus.$emit('location-selected', location)
-          })
-        }
-      }
-    },
-    showLocationsExtra(){
-      for (let i = 0; i < this.locations.length; i++) {
-        if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          let popup = L.popup({maxWidth: 200, minWidth: 200}).setContent("<div id=" + this.locations[i]._id + " @click='handleClick'><b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address + "</div>")
-          let marker = L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].subjects, alt: this.locations[i].title})
-          .addTo(this.glasgowMap);
-          popup.setLatLng(marker.getLatLng());
-          marker.on("click", function(e) {
-            let location = e.latlng;
             eventBus.$emit('location-selected', location)
           })
         }
       }
     }
-
 
 
 
