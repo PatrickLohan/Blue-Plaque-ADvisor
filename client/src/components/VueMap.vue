@@ -21,8 +21,8 @@ export default {
       center: [55.86279, -4.25424],
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      myLongitude: null,
-      myLatitude: null
+      myLongitude: "",
+      myLatitude: ""
     }
   },
   mounted() {
@@ -63,12 +63,13 @@ export default {
       console.log(location);
     },
     addLocation(coords, message) {
-      L.marker(coords).addTo(this.map)
+      console.log(coords);
+      L.marker(coords).addTo(this.glasgowMap)
       .bindPopup(message)
-      this.myLongitude = coords[0];
-      this.myLatitude = coords[1];
-      console.log('myLongitude:', myLongitude);
-      console.log('myLatitude:', myLatitude);
+      this.myLatitude = coords[0];
+      this.myLongitude = coords[1];
+      console.log('myLatitude:', this.myLatitude);
+      console.log('myLongitude:', this.myLongitude);
     }
 
 
