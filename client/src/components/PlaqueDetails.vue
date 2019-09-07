@@ -3,9 +3,10 @@
 
     <p>{{location.title}}</p>
     <p>{{location.inscription}}</p>
-    <p>{{location.longitude}}</p>
+    <p>{{location.erected_at}}</p>
     <div id="favourites button">
-      <h3 v-on:click="addFavourite">Add to Favourites</h3>
+      <h3 v-if:="selectedLocation" v-on:click="addFavourite">Add to Favourites</h3>
+      <h3 v-on:click="removeFavourite">Remove Favourite</h3>
     </div>
   </div>
 </template>
@@ -22,7 +23,7 @@ export default {
   },
   data(){
     return {
-      selectedLocation: null
+      selectedLocation: {}
     }
   },
   mounted(){
@@ -39,8 +40,11 @@ methods: {
     .then(locations => this.locations = locations);
   },
   addFavourite: function(locations) {
-      eventBus.$emit('fav-selected', this.locations)
-    }
+      eventBus.$emit('plaque-favourited', this.location.title)
+    },
+  removeFavourite: function(locations) {
+    eventBus.$emit('plaque-defavourited', this.location)
+  }
 }
 }
 </script>
@@ -49,7 +53,7 @@ methods: {
   #plaque-details {
     display: flex;
     flex-direction: column;
-    width: 20em;
+    width: 14em;
     color: white;
   }
 </style>

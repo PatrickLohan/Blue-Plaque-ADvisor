@@ -11,6 +11,7 @@
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
+import {eventBus} from '../main.js'
 
 
 
@@ -33,6 +34,7 @@ export default {
 #sidebar-container{
   width: 20vw;
   background-color: #424242;
+  color: white;
 }
 #sidebar-components {
   display: flex;
