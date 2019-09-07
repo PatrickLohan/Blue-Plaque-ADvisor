@@ -21,7 +21,7 @@ export default {
   },
   data() {
     return{
-      favourites: ["Yoinks!"]
+      favourites: ["Yoinks!", "Malarkey!"]
     }
   },
   mounted(){
