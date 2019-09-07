@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SideBar/>
+    <SideBar :location="selectedLocation"/>
     <VueMap :locations="locations"/>
   </div>
 </template>

@@ -1,9 +1,9 @@
 <template lang="html">
   <div id="plaque-details">
 
-    <p>{{this.selectedLocation.title}}</p>
-    <p>{{locations[0].inscription}}</p>
-    <p>{{locations[0].longitude}}</p>
+    <p>{{location.title}}</p>
+    <p>{{location.inscription}}</p>
+    <p>{{location.longitude}}</p>
     <div id="favourites button">
       <h3 v-on:click="addFavourite">Add to Favourites</h3>
     </div>
@@ -50,5 +50,6 @@ methods: {
     display: flex;
     flex-direction: column;
     width: 20em;
+    color: white;
   }
 </style>
