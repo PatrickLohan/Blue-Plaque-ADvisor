@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="glasgowMap">
-    {{showLocations(this.locations)}}
+      {{showLocations()}}
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       zoom: 12,
-      center: [55.86279, -4.25424],
+      center: [55.860497, -4.257916],
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       myLongitude: "",
@@ -36,25 +36,21 @@ export default {
     //end of Listener
 
     this.glasgowMap.setView(this.center, this.zoom);
+    this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
   },
   methods: {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
         if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].subjects, alt: this.locations[i].title})
+          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title, alt: this.locations[i].title, riseOnHover: true})
           .addTo(this.glasgowMap)
-          .bindPopup("<div id=" + this.locations[i]._id + " @click='handleClick'><b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200})
-          .on("click", function(e) {
-            let location = e.latlng;
-            //console.log(location.lat); // just the value
-            //console.log(location.lng); // just the value
-            Object.values(location); // returns [55.86339, -4.25607]
+          .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title + "</b><br />"
+          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-107, 138]})
+          .on("click", function(marker) {
+            let location = marker.latlng;
             eventBus.$emit('location-selected', location)
-          })
-
-
+          });
         }
       }
     },
@@ -91,7 +87,6 @@ export default {
     //   }
 
   }
-
 }
 </script>
 
