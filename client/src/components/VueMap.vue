@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="glasgowMap">
-      {{showLocations(this.locations)}}
+      {{showLocations()}}
   </div>
 </template>
 
@@ -40,9 +40,9 @@ export default {
           L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].subjects, alt: this.locations[i].title})
           .addTo(this.glasgowMap)
           .bindPopup("<div id=" + this.locations[i]._id + " @click='handleClick'><b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200})
-          .on("click", function(e) {
-            let location = e.latlng;
+          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-107, 138]})
+          .on("click", function(marker) {
+            let location = marker.latlng;
             eventBus.$emit('location-selected', location)
           })
         }
