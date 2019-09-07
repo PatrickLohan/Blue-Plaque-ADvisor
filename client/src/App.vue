@@ -56,25 +56,21 @@ body {
   justify-content: flex-end;
 }
 
- .leaflet-popup-content-wrapper {
+.leaflet-popup-content-wrapper {
   color: #fff;
   background-color: #477CDE;
   border: 1px solid white;
-  box-shadow: inset 0 0 3px white;
   text-align: center;
-  height: 80px;
-  overflow: scroll;
-  display: flex;
-  align-items: center;
-  border-top-right-radius: 0;
-}
-
-.leaflet-popup-content {
-  margin: 5px;
 }
 
 .leaflet-popup-tip {
  display: none;
+}
+
+.leaflet-popup {
+  position: relative;
+  top: 30px;
+  margin-left: -120px;
 }
 
 .popupMessage:hover {

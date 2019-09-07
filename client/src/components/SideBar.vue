@@ -2,6 +2,7 @@
   <div id="sidebar-container">
     <div id="sidebar-components">
       <PlaqueFavourites v-if="favourites.length != 0" :favourites="favourites"/>
+      <PlaqueDetails>
     </div>
   </div>
 </template>
@@ -16,7 +17,8 @@ import PlaqueDetails from './PlaqueDetails'
 export default {
   name: 'sidebar-view',
   components: {
-    PlaqueFavourites
+    PlaqueFavourites,
+    PlaqueDetails
   },
   data() {
     return{
