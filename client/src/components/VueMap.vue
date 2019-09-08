@@ -42,22 +42,22 @@ export default {
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
     // TESTING FOR ROUTE START
+    let control = L.Routing.control({}).addTo(this.glasgowMap)
+
     function createButton(label, container) {
-      let btn = L.DomUtil.create('button', '', container);
+      let btn = L.DomUtil.create('button', 'routes', container);
       btn.setAttribute('type', 'button');
       btn.innerHTML = label;
       return btn;
     };
 
-
-    let control = L.Routing.control({}).addTo(this.glasgowMap)
-
     this.glasgowMap.on('contextmenu', (e) => {
+
       let container = L.DomUtil.create('div');
       let begin = createButton('Select Startpoint', container);
       let end = createButton('Select Endpoint', container);
 
-      L.popup({className: 'startpoint'})
+      L.popup({className: 'route-setter'})
         .setContent(container)
         .setLatLng(e.latlng)
         .openOn(this.glasgowMap);
@@ -70,8 +70,6 @@ export default {
       L.DomEvent.on(end, 'click', () => {
          control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng)
          this.glasgowMap.closePopup()})
-
-
 
     })}
 

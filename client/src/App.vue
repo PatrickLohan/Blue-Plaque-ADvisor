@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SideBar :location="selectedLocation"/>
+    <SideBar :location="selectedLocation" :locations="locations"/>
     <VueMap :locations="locations"/>
   </div>
 </template>
@@ -31,6 +31,10 @@ export default {
     eventBus.$on('location-selected', (location) => {
       let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude && location.lng === plaque.longitude);
       this.selectedLocation = foundLocation[0];
+    })
+
+    eventBus.$on('selected-location', (location) => {
+      this.selectedLocation = location
     })
   },
   methods: {
@@ -119,6 +123,19 @@ body {
 }
 .bronze {
   text-shadow: 0 0 2px #CD853F;
+}
+.route-setter .leaflet-popup-content-wrapper {
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: inset 0 0 3px grey;
+  border-radius: 5px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.route-setter .leaflet-popup-content-wrapper .leaflet-popup-content .routes {
+  margin: 0.2em;
 }
 
 </style>
