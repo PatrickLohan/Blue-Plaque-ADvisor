@@ -15,11 +15,7 @@
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
-<<<<<<< HEAD
-import {eventBus} from '../main.js'
-=======
 import {eventBus} from '@/main.js'
->>>>>>> develop
 
 
 
@@ -50,14 +46,21 @@ export default {
 <style lang="css" scoped>
 #sidebar-container{
   width: 20vw;
+<<<<<<< HEAD
+  background-color: #DDD;
+  border-right-style: groove;
+=======
   background-color: #424242;
   color: white;
+>>>>>>> develop
 }
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  background-color: white;
   margin: 20px;
+  background-color: #EEE;
+  border-radius: 5%;
+  border-style: groove;
 }
 
 </style>
