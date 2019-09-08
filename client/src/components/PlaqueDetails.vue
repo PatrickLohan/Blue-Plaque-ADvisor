@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="plaque-details">
+  <div id="plaque-details" v-if="location.title">
 
     <p>{{location.title}}</p>
     <p>{{location.inscription}}</p>
@@ -21,24 +21,9 @@ export default {
   components: {
 
   },
-  data(){
-    return {
-      selectedLocation: {}
-    }
-  },
-  mounted(){
-
-    eventBus.$on('location-selected', (location) => {
-      let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude &&
-        location.lng === plaque.longitude);
-      this.selectedLocation = foundLocation[0];
-    })
-
-},
 methods: {
   addFavourite: function(location) {
-      this.selectedFav.push(location)
-      eventBus.$emit('plaque-favourited', this.location.title)
+      eventBus.$emit('plaque-favourited', this.location)
     },
   removeFavourite: function(location) {
     eventBus.$emit('plaque-defavourited', this.location)
@@ -51,7 +36,10 @@ methods: {
   #plaque-details {
     display: flex;
     flex-direction: column;
-    width: 14em;
     color: white;
+  }
+
+  h3:hover {
+    color: lightgrey;
   }
 </style>

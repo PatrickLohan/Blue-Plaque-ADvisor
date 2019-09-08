@@ -1,12 +1,8 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
-<<<<<<< HEAD
-      <PlaqueFavourites v-if="favourites.length != 0" :favourites="favourites"/>
       <PlaqueDetails :location="location"/>
-=======
       <PlaqueFavourites :favourites="favourites"/>
->>>>>>> develop
     </div>
   </div>
 </template>
@@ -23,8 +19,8 @@ export default {
   name: 'sidebar-view',
   props: ['location'],
   components: {
-    PlaqueFavourites,
-    PlaqueDetails
+    PlaqueDetails,
+    PlaqueFavourites
   },
   data() {
     return{
@@ -45,19 +41,14 @@ export default {
 
 <style lang="css" scoped>
 #sidebar-container{
-  width: 20vw;
-  background-color: #DDD;
-  border-right-style: groove;
-  background-color: #424242;
-  color: white;
+  max-width: 25em;
+  min-width: 15em;
+  background-color: #477CDE;
 }
 #sidebar-components {
   display: flex;
   flex-direction: column;
   margin: 20px;
-  background-color: #EEE;
-  border-radius: 5%;
-  border-style: groove;
 }
 
 </style>
