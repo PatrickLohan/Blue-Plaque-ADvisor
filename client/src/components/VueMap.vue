@@ -30,12 +30,12 @@ export default {
   mounted() {
     this.glasgowMap = L.map('glasgowMap');
 
-    // // Listener for clicks on new location
-    // this.glasgowMap.addEventListener('click', (e) => {
-    //   let coords = [e.latlng.lat, e.latlng.lng]
-    //   this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
-    // });
-    // //end of Listener
+    // Listener for clicks on new location
+    this.glasgowMap.addEventListener('click', (e) => {
+      let coords = [e.latlng.lat, e.latlng.lng]
+      this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
+    });
+    //end of Listener
 
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
@@ -52,7 +52,7 @@ export default {
 
     let control = L.Routing.control({}).addTo(this.glasgowMap)
 
-    this.glasgowMap.on('click', (e) => {
+    this.glasgowMap.on('contextmenu', (e) => {
       let container = L.DomUtil.create('div');
       let begin = createButton('Select Startpoint', container);
       let end = createButton('Select Endpoint', container);
@@ -61,7 +61,6 @@ export default {
         .setContent(container)
         .setLatLng(e.latlng)
         .openOn(this.glasgowMap);
-      // this.addRoute(coords, coords2)
 
       L.DomEvent.on(begin, 'click', () => {
         control.spliceWaypoints(0, 1, e.latlng)
