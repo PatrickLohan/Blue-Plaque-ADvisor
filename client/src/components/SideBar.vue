@@ -3,6 +3,7 @@
     <div id="sidebar-components">
       <PlaqueDetails :location="location" :favourites="favourites"/>
       <PlaqueFavourites :favourites="favourites"/>
+      <UserUpdatePlaque :userLocation="userLocation"/>
     </div>
   </div>
 </template>
@@ -11,6 +12,7 @@
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
+import UserUpdatePlaque from './UserUpdatePlaque'
 import {eventBus} from '@/main.js'
 
 
@@ -20,11 +22,13 @@ export default {
   props: ['location'],
   components: {
     PlaqueDetails,
-    PlaqueFavourites
+    PlaqueFavourites,
+    UserUpdatePlaque
   },
   data() {
     return{
-      favourites: []
+      favourites: [],
+      userLocation: ""
     }
   },
   mounted(){
@@ -34,6 +38,9 @@ export default {
     eventBus.$on('plaque-defavourited', (favourite) => {
       let index = this.favourites.indexOf(favourite);
       this.favourites.splice(index, 1)
+    }),
+    eventBus.$on('location-added', (userLocation) => {
+      this.userLocation = userLocation;
     })
   }
 }
