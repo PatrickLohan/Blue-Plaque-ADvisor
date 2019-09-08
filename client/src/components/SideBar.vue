@@ -47,7 +47,7 @@ export default {
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  margin: 2em;
 }
 
 </style>

@@ -18,5 +18,13 @@ export default {
     return fetch(baseURL + id, {
       method: 'DELETE'
     })
+  },
+  updateLocation(id, location) {
+    return fetch(baseURL + id, {
+      method: 'PUT',
+      body: JSON.stringify(location),
+      headers: { 'Content-Type' : 'application/json' }
+    })
+    .then(res => res.json())
   }
 }
