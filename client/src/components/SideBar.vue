@@ -46,13 +46,10 @@ export default {
 <style lang="css" scoped>
 #sidebar-container{
   width: 20vw;
-<<<<<<< HEAD
   background-color: #DDD;
   border-right-style: groove;
-=======
   background-color: #424242;
   color: white;
->>>>>>> develop
 }
 #sidebar-components {
   display: flex;
