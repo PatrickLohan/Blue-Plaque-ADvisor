@@ -1,16 +1,21 @@
 <template lang="html">
   <div id="favourites-list">
-    {{favourites}}
+    <PlaqueFavouritesItem v-for="favourite in favourites" :favourite="favourite" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'favourites-view',
-  props: ['favourites']
+  props: ['favourites'],
+  components: {
+    PlaqueFavouritesItem: () => import('./PlaqueFavouritesItem')
+  },
 }
 </script>
 
 <style lang="css" scoped>
-
+#favourites-list{
+  color: black;
+}
 </style>
