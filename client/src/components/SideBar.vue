@@ -41,13 +41,13 @@ export default {
 
 <style lang="css" scoped>
 #sidebar-container{
-  width: 20vw;
-  background-color: #424242;
+  max-width: 25em;
+  min-width: 15em;
+  background-color: #477CDE;
 }
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  background-color: white;
   margin: 20px;
 }
 
