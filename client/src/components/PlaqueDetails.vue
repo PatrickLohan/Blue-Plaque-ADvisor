@@ -5,8 +5,8 @@
     <p>{{location.inscription}}</p>
     <p>{{location.erected_at}}</p>
     <div id="favourites button">
-      <h3 v-on:click="addFavourite">Add to Favourites</h3>
-      <h3 v-on:click="removeFavourite">Remove Favourite</h3>
+      <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
+      <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import VueMap from '@/components/VueMap.vue'
 import {eventBus} from '../main.js'
 
 export default {
-  props: ['location'],
+  props: ['location', 'favourites'],
   components: {
 
   },
