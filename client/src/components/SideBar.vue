@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
+      <PlaqueSearch/>
       <PlaqueDetails :location="location" :favourites="favourites"/>
       <PlaqueFavourites :favourites="favourites"/>
     </div>
@@ -20,7 +21,8 @@ export default {
   props: ['location'],
   components: {
     PlaqueDetails,
-    PlaqueFavourites
+    PlaqueFavourites,
+    PlaqueSearch
   },
   data() {
     return{

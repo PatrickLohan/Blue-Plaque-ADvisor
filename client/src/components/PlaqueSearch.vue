@@ -6,9 +6,10 @@
 
 <script>
 import {eventBus} from '../main.js'
+import PlaqueService from '@/services/PlaqueService.js'
 
 export default {
-  props: ['locations'],
+  // props: ['locations'],
   data() {
     return {
       "search": "",
@@ -27,7 +28,7 @@ export default {
       let foundPlaque = this.locations.find((location) => {
         return location.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })
-      this.selectedLocation = foundLocation
+      this.selectedLocation = foundPlaque
 
       eventBus.$emit('selected-location', this.selectedCountry)
     }
