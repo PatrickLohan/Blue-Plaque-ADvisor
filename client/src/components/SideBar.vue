@@ -1,7 +1,12 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
+<<<<<<< HEAD
+      <PlaqueFavourites v-if="favourites.length != 0" :favourites="favourites"/>
+      <PlaqueDetails :location="location"/>
+=======
       <PlaqueFavourites :favourites="favourites"/>
+>>>>>>> develop
     </div>
   </div>
 </template>
@@ -16,8 +21,10 @@ import {eventBus} from '@/main.js'
 
 export default {
   name: 'sidebar-view',
+  props: ['location'],
   components: {
-    PlaqueFavourites
+    PlaqueFavourites,
+    PlaqueDetails
   },
   data() {
     return{
@@ -39,8 +46,13 @@ export default {
 <style lang="css" scoped>
 #sidebar-container{
   width: 20vw;
+<<<<<<< HEAD
   background-color: #DDD;
   border-right-style: groove;
+=======
+  background-color: #424242;
+  color: white;
+>>>>>>> develop
 }
 #sidebar-components {
   display: flex;
