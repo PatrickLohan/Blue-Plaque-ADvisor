@@ -5,7 +5,7 @@
     <p>{{location.inscription}}</p>
     <p>{{location.erected_at}}</p>
     <div id="favourites button">
-      <h3 v-if:="selectedFav != 0" v-on:click="addFavourite">Add to Favourites</h3>
+      <h3 v-on:click="addFavourite">Add to Favourites</h3>
       <h3 v-on:click="removeFavourite">Remove Favourite</h3>
     </div>
   </div>
@@ -23,8 +23,7 @@ export default {
   },
   data(){
     return {
-      selectedLocation: null,
-      selectedFav: []
+      selectedLocation: {}
     }
   },
   mounted(){
@@ -37,10 +36,6 @@ export default {
 
 },
 methods: {
-  // fetchData(){
-  //   PlaqueService.getLocations()
-  //   .then(locations => this.locations = locations);
-  // },
   addFavourite: function(location) {
       this.selectedFav.push(location)
       eventBus.$emit('plaque-favourited', this.location.title)

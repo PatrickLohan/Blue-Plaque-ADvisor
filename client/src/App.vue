@@ -10,6 +10,7 @@ import {eventBus} from './main.js';
 import VueMap from './components/VueMap.vue'
 import SideBar from '@/components/SideBar'
 import PlaqueService from '@/services/PlaqueService'
+import PlaqueSearch from '@/components/PlaqueSearch'
 
 export default {
   name: 'app',
@@ -21,7 +22,8 @@ export default {
   },
   components: {
     VueMap,
-    SideBar
+    SideBar,
+    PlaqueSearch
   },
   mounted(){
     this.fetchData();
