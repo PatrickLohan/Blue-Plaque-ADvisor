@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
-      <PlaqueDetails :location="location"/>
+      <PlaqueDetails :location="location" :favourites="favourites"/>
       <PlaqueFavourites :favourites="favourites"/>
     </div>
   </div>
@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return{
-      favourites: ["Yoinks!", "Malarkey!"]
+      favourites: []
     }
   },
   mounted(){
@@ -41,8 +41,7 @@ export default {
 
 <style lang="css" scoped>
 #sidebar-container{
-  max-width: 25em;
-  min-width: 15em;
+  width: 25em;
   background-color: #477CDE;
 }
 #sidebar-components {
