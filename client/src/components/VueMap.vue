@@ -21,8 +21,9 @@ export default {
       center: [55.860497, -4.257916],
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      myLongitude: "",
-      myLatitude: ""
+      longitude: "",
+      latitude: "",
+      userAdded: null
     }
   },
   mounted() {
@@ -59,13 +60,18 @@ export default {
       console.log(location);
     },
     addLocation(coords, message) {
-      console.log(coords);
       L.marker(coords).addTo(this.glasgowMap)
       .bindPopup(message)
-      this.myLatitude = coords[0];
-      this.myLongitude = coords[1];
-      console.log('myLatitude:', this.myLatitude);
-      console.log('myLongitude:', this.myLongitude);
+
+      const payload = {
+        latitude: coords[0],
+        longitude: coords[1],
+        userAdded: true
+      };
+      PlaqueService.postLocations(payload)
+      .then(location => {
+        eventBus.$emit('location-added', location);
+      });
     }
 
 
