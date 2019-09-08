@@ -21,20 +21,6 @@ export default {
   components: {
 
   },
-  data(){
-    return {
-      selectedLocation: {}
-    }
-  },
-  mounted(){
-
-    eventBus.$on('location-selected', (location) => {
-      let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude &&
-        location.lng === plaque.longitude);
-      this.selectedLocation = foundLocation[0];
-    })
-
-},
 methods: {
   addFavourite: function(location) {
       this.selectedFav.push(location)
