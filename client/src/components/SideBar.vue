@@ -43,10 +43,12 @@ export default {
 #sidebar-container{
   width: 25em;
   background-color: #477CDE;
-}
-#sidebar-components {
   display: flex;
   flex-direction: column;
+}
+#sidebar-components {
+  /* display: flex;
+  flex-direction: column; */
   margin: 2em;
 }
 

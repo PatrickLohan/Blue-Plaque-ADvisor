@@ -51,11 +51,14 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+}
+
+.helllooooo {
+  background-color: beige;
 }
 
 .leaflet-popup-content-wrapper {
@@ -70,7 +73,6 @@ body {
     align-items: center;
     border-top-right-radius: 0;
 }
-
 .leaflet-popup-tip {
  display: none;
 }
