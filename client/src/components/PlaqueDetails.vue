@@ -27,12 +27,7 @@ methods: {
   removeFavourite: function(location) {
     eventBus.$emit('plaque-defavourited', this.location)
   }
-},
-mounted(){
-    eventBus.$on('selected-location', (location) => {
-      this.location = location
-    })
-  }
+}
 }
 </script>
 
