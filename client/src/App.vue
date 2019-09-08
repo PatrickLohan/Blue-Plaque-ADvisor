@@ -31,6 +31,8 @@ export default {
     eventBus.$on('location-selected', (location) => {
       let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude && location.lng === plaque.longitude);
       this.selectedLocation = foundLocation[0];
+
+
     })
   },
   methods: {

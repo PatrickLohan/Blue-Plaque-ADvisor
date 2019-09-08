@@ -1,11 +1,11 @@
 <template lang="html">
-  <div class="">
+  <form v-on:submit.prevent>
     <input type="text" v-model="search" placeholder="search for Plaque..." v-on:keyup="searchForPlaque">
     <select v-on:change="handleSelect" v-model="selectedLocation">
       <option disabled value="">Select a location...</option>
       <option v-for="location in locations" :value="location">{{location.title}}</option>
     </select>
-  </div>
+  </form>
 </template>
 
 <script>
@@ -45,4 +45,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+select {
+  width: 20em;
+}
 </style>
