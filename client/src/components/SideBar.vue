@@ -2,8 +2,12 @@
   <div id="sidebar-container">
     <div id="sidebar-components">
       <PlaqueSearch :locations="locations"/>
-      <PlaqueDetails :location="location" :favourites="favourites"/>
-      <PlaqueFavourites :favourites="favourites"/>
+      <div id="details-container">
+        <PlaqueDetails :location="location" :favourites="favourites"/>
+      </div>
+      <div id="favourites-container">
+        <PlaqueFavourites :favourites="favourites"/>
+      </div>
     </div>
   </div>
 </template>
@@ -52,7 +56,16 @@ export default {
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  margin: 2em;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 3em;
+  color: white;
+}
+
+#details-container,
+#favourites-container {
+  border-style: groove;
+  border-radius: 3%;
 }
 
 </style>

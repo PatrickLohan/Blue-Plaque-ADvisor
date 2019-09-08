@@ -1,5 +1,8 @@
 <template lang="html">
-  <li>{{favourite}}</li>
+  <div id="favourites-item">
+    <hr>
+    <li>{{favourite.title}}<br>{{favourite.address}}<hr></li>
+  </div>
 </template>
 
 <script>
@@ -11,7 +14,7 @@ export default {
 
 <style lang="css" scoped>
 li{
-  color: #477CDE;
+  color: white;
   text-decoration: none;
   list-style: none;
   text-align: left;
