@@ -47,7 +47,7 @@ export default {
           L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title, alt: this.locations[i].title, riseOnHover: true})
           .addTo(this.glasgowMap)
           .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-107, 138]})
+          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
           .on("click", function(marker) {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
@@ -73,25 +73,6 @@ export default {
         eventBus.$emit('location-added', location);
       });
     }
-
-
-
-
-    // function showMessage(marker) {
-    //
-    //   let popup = this.getPopup();
-    //   let content = popup.getContent();
-    //
-    //   if (content.includes("popupMessageHidden")) {
-    //     let newContent = content.replace(/popupMessageHidden/i, "popupMessage");
-    //     popup.setContent(newContent);
-    //     popup.update();
-    //   } else {
-    //     let newContent = content.replace(/popupMessage/i, "popupMessageHidden");
-    //     popup.setContent(newContent);
-    //     popup.update();
-    //   }
-
   }
 }
 </script>
