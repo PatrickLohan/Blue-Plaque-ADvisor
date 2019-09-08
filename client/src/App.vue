@@ -127,15 +127,20 @@ body {
 .route-setter .leaflet-popup-content-wrapper {
   background-color: lightgrey;
   border: 1px solid grey;
-  box-shadow: inset 0 0 3px grey;
-  border-radius: 5px;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
   width: 150px;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 .route-setter .leaflet-popup-content-wrapper .leaflet-popup-content .routes {
-  margin: 0.2em;
+  margin: 0 0 0.2em -0.2em ;
+  padding: 0.2em;
+  border-radius: 5px;
+  border: 1px solid grey;
+  width: 9em;
+  font-size: 1.1em;
 }
 
 </style>

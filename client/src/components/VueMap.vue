@@ -54,8 +54,8 @@ export default {
     this.glasgowMap.on('contextmenu', (e) => {
 
       let container = L.DomUtil.create('div');
-      let begin = createButton('Select Startpoint', container);
-      let end = createButton('Select Endpoint', container);
+      let begin = createButton('Start Here', container);
+      let end = createButton('End Here', container);
 
       L.popup({className: 'route-setter'})
         .setContent(container)
