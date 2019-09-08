@@ -39,13 +39,16 @@ export default {
 <style lang="css" scoped>
 #sidebar-container{
   width: 20vw;
-  background-color: #424242;
+  background-color: #DDD;
+  border-right-style: groove;
 }
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  background-color: white;
   margin: 20px;
+  background-color: #EEE;
+  border-radius: 5%;
+  border-style: groove;
 }
 
 </style>

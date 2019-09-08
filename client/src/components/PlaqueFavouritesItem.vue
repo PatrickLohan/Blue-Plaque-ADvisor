@@ -11,6 +11,9 @@ export default {
 
 <style lang="css" scoped>
 li{
-  color: black;
+  color: #477CDE;
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
 }
 </style>
