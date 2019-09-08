@@ -1,6 +1,10 @@
 <template lang="html">
   <div class="">
     <input type="text" v-model="search" placeholder="search for Plaque..." v-on:keyup="searchForPlaque">
+    <select v-on:change="handleSelect" v-model="selectedLocation">
+      <option disabled value="">Select a location...</option>
+      <option v-for="location in locations" :value="location">{{location.title}}</option>
+    </select>
   </div>
 </template>
 
@@ -9,7 +13,7 @@ import {eventBus} from '../main.js'
 import PlaqueService from '@/services/PlaqueService.js'
 
 export default {
-  // props: ['locations'],
+  props: ['locations'],
   data() {
     return {
       "search": "",
@@ -30,7 +34,11 @@ export default {
       })
       this.selectedLocation = foundPlaque
 
-      eventBus.$emit('selected-location', this.selectedCountry)
+      eventBus.$emit('selected-location', this.selectedLocation)
+    },
+    handleSelect(){
+      this.search = ""
+      eventBus.$emit('selected-location', this.selectedLocation)
     }
   }
 }

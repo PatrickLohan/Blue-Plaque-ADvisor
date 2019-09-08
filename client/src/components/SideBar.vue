@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
-      <PlaqueSearch/>
+      <PlaqueSearch :location="location"/>
       <PlaqueDetails :location="location" :favourites="favourites"/>
       <PlaqueFavourites :favourites="favourites"/>
     </div>
@@ -36,6 +36,9 @@ export default {
     eventBus.$on('plaque-defavourited', (favourite) => {
       let index = this.favourites.indexOf(favourite);
       this.favourites.splice(index, 1)
+    }),
+    eventBus.$on('selected-location', (location) => {
+      this.location = location
     })
   }
 }
