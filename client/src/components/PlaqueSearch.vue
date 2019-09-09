@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js'
-import PlaqueService from '@/services/PlaqueService.js'
+import {eventBus} from '../main.js';
 
 export default {
   props: ['locations'],
