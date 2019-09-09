@@ -33,6 +33,7 @@ export default {
     // Listener for clicks on new location
     this.glasgowMap.addEventListener('dblclick', (e) => {
       let coords = [e.latlng.lat, e.latlng.lng]
+
       this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
     });
     //end of Listener
