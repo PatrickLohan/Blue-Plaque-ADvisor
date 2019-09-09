@@ -83,6 +83,7 @@ export default {
           .on("click", function(marker) {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
+            eventBus.$emit('option-selected', 'details')
           });
         }
       }
