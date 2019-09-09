@@ -1,5 +1,8 @@
 <template lang="html">
-  <li>{{favourite.title}}</li>
+  <div id="favourites-item">
+    <hr>
+    <li>{{favourite.title}}<br>{{favourite.address}}<hr></li>
+  </div>
 </template>
 
 <script>
