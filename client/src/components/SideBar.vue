@@ -8,7 +8,7 @@
       <div id="favourites-container">
         <PlaqueFavourites :favourites="favourites"/>
       </div>
-      <div id="update-container">
+      <div id="update-container" v-if="userLocation.userAdded">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
     </div>

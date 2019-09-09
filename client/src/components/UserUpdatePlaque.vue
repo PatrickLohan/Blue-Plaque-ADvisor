@@ -1,5 +1,5 @@
 <template lang="html">
-<div v-if="userLocation.userAdded">
+<div >
   <form class="updateForm" v-on:submit.prevent="addLocation">
     <input type="text" v-model="title" placeholder="Plaque Title"required>
     <input type="text" v-model="colour_name" placeholder="Colour"required>
@@ -33,8 +33,12 @@ export default {
       this.userLocation["inscription"]=this.inscription
       this.userLocation["address"]=this.address
       PlaqueService.postLocations(this.userLocation)
-      .then(res => eventBus.$emit('location-added', res))
-      this.title = this.colour_name = this.inscription = this.address = ""
+      .then((res) => {
+        this.title = this.colour_name = this.inscription = this.address = ""
+        this.userLocation.userAdded = false
+        eventBus.$emit('location-updated', res)
+      })
+
     }
 
 
