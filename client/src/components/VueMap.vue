@@ -44,45 +44,32 @@ export default {
       })
     );
     // end of listener
-    
+
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
-    // TESTING FOR ROUTE START
-    let control = L.Routing.control({}).addTo(this.glasgowMap)
 
-    function createButton(label, container) {
-      let btn = L.DomUtil.create('button', 'routes', container);
-      btn.setAttribute('type', 'button');
-      btn.innerHTML = label;
-      return btn;
+    // ROUTE SETTER
+
+    let control = L.Routing.control({}).addTo(this.glasgowMap);
+
+    let beginLocation = {
+      lat: this.center[0],
+      lng: this.center[1]
     };
 
-    this.glasgowMap.on('contextmenu', (e) => {
+    control.spliceWaypoints(0, 1, beginLocation);
 
-      let container = L.DomUtil.create('div');
-      let begin = createButton('Start Here', container);
-      let end = createButton('End Here', container);
+    eventBus.$on('route-end', (endLocation) => {
 
-      L.popup({className: 'route-setter'})
-        .setContent(container)
-        .setLatLng(e.latlng)
-        .openOn(this.glasgowMap);
-
-      L.DomEvent.on(begin, 'click', () => {
-        control.spliceWaypoints(0, 1, e.latlng)
-        this.glasgowMap.closePopup()
-      })
-
-      L.DomEvent.on(end, 'click', () => {
-         control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng)
-         this.glasgowMap.closePopup()})
-
-    })}
-
-
-
+      let endLatLng = {
+        lat: endLocation[0],
+        lng: endLocation[1]
+      }
+      control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
+    });
+  }
     // TESTING FOR ROUTE END
   ,
   methods: {
@@ -100,12 +87,7 @@ export default {
         }
       }
     },
-    // handleClick(e) {
-    //   if (e) {
-    //     let location = e.latlng;
-    //     console.log(location);
-    //   }
-    // },
+
     addLocation(coords) {
       const payload = {
         latitude: coords[0],
