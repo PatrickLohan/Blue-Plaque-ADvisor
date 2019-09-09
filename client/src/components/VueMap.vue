@@ -20,7 +20,7 @@ export default {
     return {
       zoom: 12,
       center: [55.860497, -4.257916],
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       longitude: "",
       latitude: "",
