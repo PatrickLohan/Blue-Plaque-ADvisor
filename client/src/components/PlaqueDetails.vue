@@ -30,7 +30,7 @@ export default {
     },
     goToLocation: function(location) {
       let endLocation = [this.location.latitude, this.location.longitude];
-      eventBus.$emit('route-end', endLocation)
+      eventBus.$emit('route-end', endLocation);
     }
   }
 }
