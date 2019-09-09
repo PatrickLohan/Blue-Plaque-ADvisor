@@ -49,6 +49,9 @@ export default {
 #sidebar-container{
   width: 25em;
   background-color: #477CDE;
+}
+
+#sidebar-components {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -62,5 +65,7 @@ export default {
   border-style: groove;
   border-radius: 3%;
 }
+
+
 
 </style>
