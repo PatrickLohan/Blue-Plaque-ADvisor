@@ -40,11 +40,11 @@ export default {
     this.glasgowMap.addEventListener(
       eventBus.$on('location-updated', (userLocation) => {
         L.marker([userLocation.latitude, userLocation.longitude]).addTo(this.glasgowMap)
-        .bindPopup(userLocation.title)
+        .bindPopup(userLocation.title + "<br />" + userLocation.address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
       })
     );
     // end of listener
-
+    
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
