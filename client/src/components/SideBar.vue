@@ -12,10 +12,11 @@
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
     </div>
-  </div>
+</div>
 </template>
 
 <script>
+
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
@@ -50,11 +51,27 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     })
+  },
+  methods: {
+    openNav() {
+      document.getElementById("sidebar-container").style.width = "25em";
+    },
+    closeNav() {
+      document.getElementById("sidebar-container").style.width = "1em";
+    }
   }
+
 }
 </script>
 
 <style lang="css" scoped>
+#sidebar-toggle {
+  display: flex;
+  width: 5em;
+  height: 100%;
+  background-color: darkblue;
+}
+
 #sidebar-container{
   width: 25em;
   background-color: #477CDE;
