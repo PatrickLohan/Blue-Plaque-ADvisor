@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="favourites-list">
-    <!-- <PlaqueFavouritesItem v-for="favourite in this.favourites" :favourite="favourite" /> -->
+    <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
   </div>
 </template>
 

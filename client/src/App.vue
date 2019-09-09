@@ -66,10 +66,6 @@ body {
   justify-content: flex-end;
 }
 
-.helllooooo {
-  background-color: beige;
-}
-
 .leaflet-popup-content-wrapper {
     color: #fff;
     background-color: #477CDE;
