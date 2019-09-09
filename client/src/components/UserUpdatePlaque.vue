@@ -41,7 +41,7 @@ export default {
         this.userLocation.userAdded = false
         eventBus.$emit('location-updated', res)
       })
-
+      eventBus.$emit('option-selected', 'details');
     }
 
 
