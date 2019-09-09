@@ -6,6 +6,7 @@
     <div id="favourites button">
       <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
+      <h3 v-on:click="goToLocation">Get Me Here</h3>
     </div>
   </div>
 </template>
@@ -20,14 +21,18 @@ export default {
   props: ['location', 'favourites'],
   components: {
   },
-methods: {
-  addFavourite: function(location) {
+  methods: {
+    addFavourite: function(location) {
       eventBus.$emit('plaque-favourited', this.location)
     },
-  removeFavourite: function(location) {
-    eventBus.$emit('plaque-defavourited', this.location)
+    removeFavourite: function(location) {
+      eventBus.$emit('plaque-defavourited', this.location)
+    },
+    goToLocation: function(location) {
+      let endLocation = [this.location.latitude, this.location.longitude];
+      eventBus.$emit('route-end', endLocation);
+    }
   }
-}
 }
 </script>
 

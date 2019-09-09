@@ -33,48 +33,43 @@ export default {
     // Listener for clicks on new location
     this.glasgowMap.addEventListener('dblclick', (e) => {
       let coords = [e.latlng.lat, e.latlng.lng]
-      this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
+      this.addLocation(coords)
     });
     //end of Listener
+    // Listener for user updated location coming back
+    this.glasgowMap.addEventListener(
+      eventBus.$on('location-updated', (userLocation) => {
+        L.marker([userLocation.latitude, userLocation.longitude]).addTo(this.glasgowMap)
+        .bindPopup(userLocation.title + "<br />" + userLocation.address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
+      })
+    );
+    // end of listener
 
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
-    // TESTING FOR ROUTE START
-    let control = L.Routing.control({}).addTo(this.glasgowMap)
 
-    function createButton(label, container) {
-      let btn = L.DomUtil.create('button', 'routes', container);
-      btn.setAttribute('type', 'button');
-      btn.innerHTML = label;
-      return btn;
+    // ROUTE SETTER
+
+    let control = L.Routing.control({}).addTo(this.glasgowMap);
+
+    let beginLocation = {
+      lat: this.center[0],
+      lng: this.center[1]
     };
 
-    this.glasgowMap.on('contextmenu', (e) => {
+    control.spliceWaypoints(0, 1, beginLocation);
 
-      let container = L.DomUtil.create('div');
-      let begin = createButton('Start Here', container);
-      let end = createButton('End Here', container);
+    eventBus.$on('route-end', (endLocation) => {
 
-      L.popup({className: 'route-setter'})
-        .setContent(container)
-        .setLatLng(e.latlng)
-        .openOn(this.glasgowMap);
-
-      L.DomEvent.on(begin, 'click', () => {
-        control.spliceWaypoints(0, 1, e.latlng)
-        this.glasgowMap.closePopup()
-      })
-
-      L.DomEvent.on(end, 'click', () => {
-         control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng)
-         this.glasgowMap.closePopup()})
-
-    })}
-
-
-
+      let endLatLng = {
+        lat: endLocation[0],
+        lng: endLocation[1]
+      }
+      control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
+    });
+  }
     // TESTING FOR ROUTE END
   ,
   methods: {
@@ -92,25 +87,16 @@ export default {
         }
       }
     },
-    // handleClick(e) {
-    //   if (e) {
-    //     let location = e.latlng;
-    //     console.log(location);
-    //   }
-    // },
-    addLocation(coords, message) {
-      L.marker(coords).addTo(this.glasgowMap)
-      .bindPopup(message)
 
+    addLocation(coords) {
       const payload = {
         latitude: coords[0],
         longitude: coords[1],
         userAdded: true
       };
-
       eventBus.$emit('location-added', payload);
-
     }
+
   }
 }
 </script>
