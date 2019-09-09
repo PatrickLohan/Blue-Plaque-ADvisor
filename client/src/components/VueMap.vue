@@ -53,7 +53,11 @@ export default {
     // ROUTE SETTER
 
     let control = L.Routing.control({
-      router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9')
+      router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9', {
+        urlParameters: {
+          vehicle: 'foot'
+        }
+      })
     }).addTo(this.glasgowMap);
 
     let beginLocation = {
