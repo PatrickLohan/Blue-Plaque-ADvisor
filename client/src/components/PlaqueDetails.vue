@@ -6,7 +6,8 @@
     <div id="favourites button">
       <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
-      <h3 v-on:click="goToLocation">Get Me Here</h3>
+      <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
+      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
   </div>
 </template>
