@@ -9,6 +9,7 @@ import {eventBus} from '../main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 import 'leaflet-routing-machine';
+import 'lrm-graphhopper';
 
 export default {
   name: 'glasgowMap',
@@ -21,7 +22,7 @@ export default {
       zoom: 12,
       center: [55.860497, -4.257916],
       url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <a href="https://www.graphhopper.com/">GraphHopper API</a>',
       longitude: "",
       latitude: "",
       userAdded: null
@@ -49,10 +50,11 @@ export default {
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
-
     // ROUTE SETTER
 
-    let control = L.Routing.control({}).addTo(this.glasgowMap);
+    let control = L.Routing.control({
+      router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9')
+    }).addTo(this.glasgowMap);
 
     let beginLocation = {
       lat: this.center[0],
