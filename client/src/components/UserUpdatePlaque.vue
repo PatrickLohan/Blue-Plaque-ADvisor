@@ -37,7 +37,7 @@ export default {
       this.userLocation["address"]=this.address
       PlaqueService.postLocations(this.userLocation)
       .then((res) => {
-        this.title = this.colour_name = this.inscription = this.address = ""
+        this.title = this.subjects = this.colour_name = this.inscription = this.address = ""
         this.userLocation.userAdded = false
         eventBus.$emit('location-updated', res)
       })
