@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="sidebar-container">
+    <MenuBar/>
     <div id="sidebar-components">
       <PlaqueSearch :locations="locations"/>
       <div id="details-container">
@@ -8,7 +9,7 @@
       <div id="favourites-container">
         <PlaqueFavourites :favourites="favourites"/>
       </div>
-      <div id="update-container">
+      <div id="update-container" v-if="userLocation.userAdded">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
     </div>
@@ -21,6 +22,7 @@ import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
 import UserUpdatePlaque from './UserUpdatePlaque'
+import MenuBar from './MenuBar'
 import {eventBus} from '@/main.js'
 
 
@@ -29,6 +31,7 @@ export default {
   name: 'sidebar-view',
   props: ['locations', 'location'],
   components: {
+    MenuBar,
     PlaqueDetails,
     PlaqueFavourites,
     PlaqueSearch,
@@ -87,11 +90,15 @@ export default {
 }
 
 #details-container,
-#favourites-container {
+#favourites-container,
+#update-container {
   border-style: groove;
   border-radius: 3%;
 }
 
+#update-container {
+  padding: 5px;
+}
 
 
 </style>
