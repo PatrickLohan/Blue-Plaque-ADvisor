@@ -1,5 +1,6 @@
 <template lang="html">
   <div id="sidebar-container">
+    <MenuBar/>
     <div id="sidebar-components">
       <PlaqueSearch :locations="locations"/>
       <div id="details-container">
@@ -20,6 +21,7 @@ import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
 import UserUpdatePlaque from './UserUpdatePlaque'
+import MenuBar from './MenuBar'
 import {eventBus} from '@/main.js'
 
 
@@ -28,6 +30,7 @@ export default {
   name: 'sidebar-view',
   props: ['locations', 'location'],
   components: {
+    MenuBar,
     PlaqueDetails,
     PlaqueFavourites,
     PlaqueSearch,
