@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SideBar :location="selectedLocation"/>
+    <SideBar :location="selectedLocation" :locations="locations"/>
     <VueMap :locations="locations"/>
   </div>
 </template>
@@ -31,6 +31,15 @@ export default {
     eventBus.$on('location-selected', (location) => {
       let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude && location.lng === plaque.longitude);
       this.selectedLocation = foundLocation[0];
+
+
+    })
+    eventBus.$on('selected-location', (location) => {
+      this.selectedLocation = location
+    })
+
+    eventBus.$on('selected-location', (location) => {
+      this.selectedLocation = location
     })
   },
   methods: {
@@ -51,41 +60,31 @@ body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }
 
-.leaflet-popup-content-wrapper {
-  color: #fff;
-  background-color: #477CDE;
-  border: 1px solid white;
-  text-align: center;
+.helllooooo {
+  background-color: beige;
 }
 
+.leaflet-popup-content-wrapper {
+    color: #fff;
+    background-color: #477CDE;
+    border: 1px solid white;
+    box-shadow: inset 0 0 3px white;
+    text-align: center;
+    height: 80px;
+    overflow: scroll;
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 0;
+}
 .leaflet-popup-tip {
  display: none;
 }
-
-<<<<<<< HEAD
-.leaflet-popup {
-  position: relative;
-  top: 30px;
-  margin-left: -120px;
-}
-
-.popupMessage:hover {
-  color: lightgrey;
-  text-shadow: 0 0 5px white;
-}
-
-.popupMessageHidden {
-  display: none;
-}
-=======
->>>>>>> develop
 
 #logoContainer {
     position: static;
@@ -129,6 +128,24 @@ body {
 }
 .bronze {
   text-shadow: 0 0 2px #CD853F;
+}
+.route-setter .leaflet-popup-content-wrapper {
+  background-color: lightgrey;
+  border: 1px solid grey;
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+  width: 150px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.route-setter .leaflet-popup-content-wrapper .leaflet-popup-content .routes {
+  margin: 0 0 0.2em -0.2em ;
+  padding: 0.2em;
+  border-radius: 5px;
+  border: 1px solid grey;
+  width: 9em;
+  font-size: 1.1em;
 }
 
 </style>

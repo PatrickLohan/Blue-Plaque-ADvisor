@@ -1,6 +1,5 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
-
     <p>{{location.title}}</p>
     <p>{{location.inscription}}</p>
     <p>{{location.erected_at}}</p>
@@ -12,6 +11,7 @@
 </template>
 
 <script>
+import PlaqueSearch from './PlaqueSearch'
 import PlaqueService from '@/services/PlaqueService.js'
 import VueMap from '@/components/VueMap.vue'
 import {eventBus} from '../main.js'
@@ -19,7 +19,6 @@ import {eventBus} from '../main.js'
 export default {
   props: ['location', 'favourites'],
   components: {
-
   },
 methods: {
   addFavourite: function(location) {

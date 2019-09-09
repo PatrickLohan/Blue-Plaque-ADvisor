@@ -8,6 +8,7 @@
 import {eventBus} from '../main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
+import 'leaflet-routing-machine';
 
 export default {
   name: 'glasgowMap',
@@ -19,7 +20,7 @@ export default {
     return {
       zoom: 12,
       center: [55.860497, -4.257916],
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       longitude: "",
       latitude: "",
@@ -39,7 +40,43 @@ export default {
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
-  },
+
+    // TESTING FOR ROUTE START
+    let control = L.Routing.control({}).addTo(this.glasgowMap)
+
+    function createButton(label, container) {
+      let btn = L.DomUtil.create('button', 'routes', container);
+      btn.setAttribute('type', 'button');
+      btn.innerHTML = label;
+      return btn;
+    };
+
+    this.glasgowMap.on('contextmenu', (e) => {
+
+      let container = L.DomUtil.create('div');
+      let begin = createButton('Start Here', container);
+      let end = createButton('End Here', container);
+
+      L.popup({className: 'route-setter'})
+        .setContent(container)
+        .setLatLng(e.latlng)
+        .openOn(this.glasgowMap);
+
+      L.DomEvent.on(begin, 'click', () => {
+        control.spliceWaypoints(0, 1, e.latlng)
+        this.glasgowMap.closePopup()
+      })
+
+      L.DomEvent.on(end, 'click', () => {
+         control.spliceWaypoints(control.getWaypoints().length - 1, 1, e.latlng)
+         this.glasgowMap.closePopup()})
+
+    })}
+
+
+
+    // TESTING FOR ROUTE END
+  ,
   methods: {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
@@ -47,7 +84,7 @@ export default {
           L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title, alt: this.locations[i].title, riseOnHover: true})
           .addTo(this.glasgowMap)
           .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title + "</b><br />"
-          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-107, 138]})
+          + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
           .on("click", function(marker) {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
@@ -55,10 +92,12 @@ export default {
         }
       }
     },
-    handleClick(e) {
-      let location = e.latlng;
-      console.log(location);
-    },
+    // handleClick(e) {
+    //   if (e) {
+    //     let location = e.latlng;
+    //     console.log(location);
+    //   }
+    // },
     addLocation(coords, message) {
       L.marker(coords).addTo(this.glasgowMap)
       .bindPopup(message)
@@ -72,31 +111,13 @@ export default {
       eventBus.$emit('location-added', payload);
 
     }
-
-
-
-
-    // function showMessage(marker) {
-    //
-    //   let popup = this.getPopup();
-    //   let content = popup.getContent();
-    //
-    //   if (content.includes("popupMessageHidden")) {
-    //     let newContent = content.replace(/popupMessageHidden/i, "popupMessage");
-    //     popup.setContent(newContent);
-    //     popup.update();
-    //   } else {
-    //     let newContent = content.replace(/popupMessage/i, "popupMessageHidden");
-    //     popup.setContent(newContent);
-    //     popup.update();
-    //   }
-
   }
 }
 </script>
 
 <style lang="css" scoped>
 @import "~leaflet/dist/leaflet.css";
+@import "../assets/leaflet-routing-machine.css";
 
 #glasgowMap {
   width: 100vw;

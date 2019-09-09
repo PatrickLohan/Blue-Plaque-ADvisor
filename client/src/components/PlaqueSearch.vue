@@ -1,11 +1,15 @@
 <template lang="html">
-  <div class="">
+  <form v-on:submit.prevent>
     <input type="text" v-model="search" placeholder="search for Plaque..." v-on:keyup="searchForPlaque">
-  </div>
+    <select v-on:change="handleSelect" v-model="selectedLocation">
+      <option disabled value="">Select a location...</option>
+      <option v-for="location in locations" :value="location">{{location.title}}</option>
+    </select>
+  </form>
 </template>
 
 <script>
-import {eventBus} from '../main.js'
+import {eventBus} from '../main.js';
 
 export default {
   props: ['locations'],
@@ -15,25 +19,26 @@ export default {
       "selectedLocation": null
     }
   },
-  mounted(){
-    this.fetchData();
-  },
   methods: {
-    fetchData(){
-      PlaqueService.getLocations()
-      .then(locations => this.locations = locations);
-    },
     searchForPlaque(){
       let foundPlaque = this.locations.find((location) => {
         return location.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1
       })
-      this.selectedLocation = foundLocation
+      this.selectedLocation = foundPlaque
 
-      eventBus.$emit('selected-location', this.selectedCountry)
+      eventBus.$emit('selected-location', this.selectedLocation)
+    },
+    handleSelect(){
+      this.search = ""
+      eventBus.$emit('selected-location', this.selectedLocation)
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+
+select {
+  width: 20em;
+}
 </style>

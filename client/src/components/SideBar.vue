@@ -1,9 +1,16 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
-      <PlaqueDetails :location="location" :favourites="favourites"/>
-      <PlaqueFavourites :favourites="favourites"/>
-      <UserUpdatePlaque :userLocation="userLocation"/>
+      <PlaqueSearch :locations="locations"/>
+      <div id="details-container">
+        <PlaqueDetails :location="location" :favourites="favourites"/>
+      </div>
+      <div id="favourites-container">
+        <PlaqueFavourites :favourites="favourites"/>
+      </div>
+      <div id="update-container">
+        <UserUpdatePlaque :userLocation="userLocation"/>
+      </div>
     </div>
   </div>
 </template>
@@ -19,10 +26,11 @@ import {eventBus} from '@/main.js'
 
 export default {
   name: 'sidebar-view',
-  props: ['location'],
+  props: ['locations', 'location'],
   components: {
     PlaqueDetails,
     PlaqueFavourites,
+    PlaqueSearch,
     UserUpdatePlaque
   },
   data() {
@@ -51,10 +59,22 @@ export default {
   width: 25em;
   background-color: #477CDE;
 }
+
 #sidebar-components {
   display: flex;
   flex-direction: column;
-  margin: 20px;
+  justify-content: space-between;
+  padding: 5px;
+  margin: 3em;
+  color: white;
 }
+
+#details-container,
+#favourites-container {
+  border-style: groove;
+  border-radius: 3%;
+}
+
+
 
 </style>
