@@ -107,10 +107,9 @@ export default {
         longitude: coords[1],
         userAdded: true
       };
-      PlaqueService.postLocations(payload)
-      .then(location => {
-        eventBus.$emit('location-added', location);
-      });
+
+      eventBus.$emit('location-added', payload);
+
     }
   }
 }

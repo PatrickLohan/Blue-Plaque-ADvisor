@@ -8,6 +8,9 @@
       <div id="favourites-container">
         <PlaqueFavourites :favourites="favourites"/>
       </div>
+      <div id="update-container">
+        <UserUpdatePlaque :userLocation="userLocation"/>
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +19,7 @@
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
+import UserUpdatePlaque from './UserUpdatePlaque'
 import {eventBus} from '@/main.js'
 
 
@@ -26,11 +30,13 @@ export default {
   components: {
     PlaqueDetails,
     PlaqueFavourites,
-    PlaqueSearch
+    PlaqueSearch,
+    UserUpdatePlaque
   },
   data() {
     return{
-      favourites: []
+      favourites: [],
+      userLocation: ""
     }
   },
   mounted(){
@@ -40,6 +46,9 @@ export default {
     eventBus.$on('plaque-defavourited', (favourite) => {
       let index = this.favourites.indexOf(favourite);
       this.favourites.splice(index, 1)
+    }),
+    eventBus.$on('location-added', (userLocation) => {
+      this.userLocation = userLocation;
     })
   }
 }
