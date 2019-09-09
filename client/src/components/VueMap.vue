@@ -10,6 +10,7 @@ import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 import 'leaflet-routing-machine';
 import 'lrm-graphhopper';
+import 'leaflet.locatecontrol';
 
 export default {
   name: 'glasgowMap',
@@ -52,6 +53,9 @@ export default {
 
     // ROUTE SETTER
 
+    L.control.locate().addTo(this.glasgowMap);
+    // console.log(L.control.locate().addTo(this.glasgowMap));
+
     let control = L.Routing.control({
       router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9', {
         urlParameters: {
@@ -60,12 +64,18 @@ export default {
       })
     }).addTo(this.glasgowMap);
 
-    let beginLocation = {
-      lat: this.center[0],
-      lng: this.center[1]
-    };
+    this.glasgowMap.locate()
+    .on('locationfound', function(e) {
 
-    control.spliceWaypoints(0, 1, beginLocation);
+      let beginLocation = {
+        lat: e.latitude,
+        lng: e.longitude
+      };
+      
+      control.spliceWaypoints(0, 1, beginLocation)
+    })
+
+
 
     eventBus.$on('route-end', (endLocation) => {
 
