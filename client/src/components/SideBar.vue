@@ -62,6 +62,9 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     }),
+    eventBus.$on('update-location', (userLocation) => {
+      this.userLocation = userLocation;
+    })
     // eventBus.$on('home-selected', () => {
     //   let showComponent = home
     // }),
