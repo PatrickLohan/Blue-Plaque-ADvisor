@@ -33,10 +33,17 @@ export default {
     // Listener for clicks on new location
     this.glasgowMap.addEventListener('dblclick', (e) => {
       let coords = [e.latlng.lat, e.latlng.lng]
-
-      this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
+      this.addLocation(coords)
     });
     //end of Listener
+    // Listener for user updated location coming back
+    this.glasgowMap.addEventListener(
+      eventBus.$on('location-updated', (userLocation) => {
+        L.marker([userLocation.latitude, userLocation.longitude]).addTo(this.glasgowMap)
+        .bindPopup(userLocation.title + "<br />" + userLocation.address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
+      })
+    );
+    // end of listener
 
     this.glasgowMap.setView(this.center, this.zoom);
     this.glasgowMap.options.minZoom = 11;
@@ -80,19 +87,16 @@ export default {
         }
       }
     },
-    addLocation(coords, message) {
-      L.marker(coords).addTo(this.glasgowMap)
-      .bindPopup(message)
 
+    addLocation(coords) {
       const payload = {
         latitude: coords[0],
         longitude: coords[1],
         userAdded: true
       };
-
       eventBus.$emit('location-added', payload);
-
     }
+
   }
 }
 </script>
