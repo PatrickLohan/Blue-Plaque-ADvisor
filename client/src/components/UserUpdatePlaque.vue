@@ -2,6 +2,7 @@
 <div v-if="userLocation.userAdded">
   <form class="updateForm" v-on:submit.prevent="addLocation">
     <input type="text" v-model="title" required>
+    <input type="text" v-model="title" required>
     <input type="submit" value="Submit">
   </form>
 </div>

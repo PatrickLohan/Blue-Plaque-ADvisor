@@ -31,7 +31,7 @@ export default {
     this.glasgowMap = L.map('glasgowMap');
 
     // Listener for clicks on new location
-    this.glasgowMap.addEventListener('click', (e) => {
+    this.glasgowMap.addEventListener('dblclick', (e) => {
       let coords = [e.latlng.lat, e.latlng.lng]
       this.addLocation(coords, `Lat: ${coords[0]}, Lng: ${coords[1]} `)
     });
