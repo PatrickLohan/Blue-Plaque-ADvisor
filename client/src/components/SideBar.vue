@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="sidebar-container">
     <div id="sidebar-components">
+      <PlaqueSearch :locations="locations"/>
       <div id="details-container">
         <PlaqueDetails :location="location" :favourites="favourites"/>
       </div>
@@ -21,10 +22,11 @@ import {eventBus} from '@/main.js'
 
 export default {
   name: 'sidebar-view',
-  props: ['location'],
+  props: ['locations', 'location'],
   components: {
     PlaqueDetails,
-    PlaqueFavourites
+    PlaqueFavourites,
+    PlaqueSearch
   },
   data() {
     return{
