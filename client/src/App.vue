@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <SideBar :location="selectedLocation"/>
+    <SideBar :location="selectedLocation" :locations="locations"/> 
     <VueMap :locations="locations"/>
   </div>
 </template>
@@ -33,6 +33,9 @@ export default {
       this.selectedLocation = foundLocation[0];
 
 
+    })
+    eventBus.$on('selected-location', (location) => {
+      this.selectedLocation = location
     })
   },
   methods: {

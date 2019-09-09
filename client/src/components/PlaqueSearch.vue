@@ -20,14 +20,7 @@ export default {
       "selectedLocation": null
     }
   },
-  mounted(){
-    this.fetchData();
-  },
   methods: {
-    fetchData(){
-      PlaqueService.getLocations()
-      .then(locations => this.locations = locations);
-    },
     searchForPlaque(){
       let foundPlaque = this.locations.find((location) => {
         return location.title.toLowerCase().indexOf(this.search.toLowerCase()) > -1

@@ -22,7 +22,7 @@ import {eventBus} from '@/main.js'
 
 export default {
   name: 'sidebar-view',
-  props: ['locations'],
+  props: ['locations', 'location'],
   components: {
     PlaqueDetails,
     PlaqueFavourites,
@@ -40,9 +40,6 @@ export default {
     eventBus.$on('plaque-defavourited', (favourite) => {
       let index = this.favourites.indexOf(favourite);
       this.favourites.splice(index, 1)
-    }),
-    eventBus.$on('selected-location', (location) => {
-      this.location = location
     })
   }
 }
