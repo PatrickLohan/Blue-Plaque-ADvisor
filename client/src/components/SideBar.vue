@@ -17,12 +17,15 @@
       <div id="update-container" v-if="this.show === 'update'">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
+
     </div>
     <FooterBar/>
   </div>
 </template>
 
 <script>
+
+import SidebarToggle from './SidebarToggle'
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
@@ -64,6 +67,9 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     }),
+    eventBus.$on('toggle-sidebar-on', () => {
+    document.getElementById("sidebar-container", "sidebar-components").style.width = "4em";
+    }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
     })
@@ -85,11 +91,26 @@ export default {
 
       }
     })
+  },
+  methods: {
+    openNav() {
+      document.getElementById("sidebar-container").style.width = "20em";
+    },
+    closeNav() {
+      document.getElementById("sidebar-container").style.width = "5em";
+    }
   }
+
 }
 </script>
 
 <style lang="css" scoped>
+
+#sidebar-toggle {
+  /* position: absolute;
+  right: 400px; */
+}
+
 #sidebar-container{
   display: flex;
   flex-direction: column;
@@ -98,6 +119,9 @@ export default {
   width: 25vw;
   height: 100vh;
   background-color: #477CDE;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
 }
 
 /* #search-container{
