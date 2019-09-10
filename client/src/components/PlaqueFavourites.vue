@@ -50,8 +50,15 @@ export default {
 </script>
 
 <style lang="css" scoped>
+#favourites-list {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 h2{
   line-height: 12px;
+  text-align: center;
 }
 
 #mini-buttons{
