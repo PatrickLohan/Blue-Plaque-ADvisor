@@ -18,11 +18,9 @@
         <PlaqueHome/>
       </div>
       <div id="update-container" v-if="this.show === 'update'">
-        <UserUpdatePlaque :userLocation="userLocation"/>
+        <UserUpdatePlaque v-if="userLocation._id" :userLocation="userLocation"/>
+        <UserAddPlaque v-if="!userLocation._id" :userLocation="userLocation"/>
       </div>
-
-
-
     </div>
     <FooterBar />
   </div>
@@ -34,6 +32,7 @@ import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
 import UserUpdatePlaque from './UserUpdatePlaque'
+import UserAddPlaque from './UserAddPlaque'
 import MenuBar from './MenuBar'
 import FooterBar from './FooterBar'
 import PlaqueHome from './PlaqueHome'
@@ -51,6 +50,7 @@ export default {
     PlaqueFavourites,
     PlaqueSearch,
     UserUpdatePlaque,
+    UserAddPlaque,
     FooterBar
   },
   data() {
@@ -124,21 +124,16 @@ export default {
   background-color: #477CDE;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
 }
-
-/* #search-container{
-  margin: 5px 20px;
-  width: 20vw;
-} */
 
 #sidebar-components {
   padding: 1px 5px;
-  margin: 0 3vw;
-  background-color: white;
+  margin: 0 2vw;
+  background-color: #E5EDFB;
   color: black;
-  border-style: groove;
   border-radius: 3%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #details-container,
@@ -146,20 +141,19 @@ export default {
 #update-container,
 #home-container {
   height: 50vh;
-  padding: 10px;
-  overflow: auto;
-}
-
-#update-container {
   padding: 5px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: flex-start;
 }
 
 #search-container{
-  width: 10vw;
   align-self: center;
 }
 
-#menu-bar{
+MenuBar{
   height: 10vh;
 }
 

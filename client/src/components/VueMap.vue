@@ -23,7 +23,7 @@ export default {
       zoom: 12,
       center: [55.860497, -4.257916],
       url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <a href="https://www.graphhopper.com/">GraphHopper API</a>',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.graphhopper.com/">GraphHopper API</a> | <a href="https://www.liedman.net/leaflet-routing-machine/">Leaflet Routing Machine</a> | <a href="https://github.com/domoritz/leaflet-locatecontrol">Leaflet Locatecontrol</a>',
       longitude: "",
       latitude: "",
       userAdded: null
@@ -38,9 +38,9 @@ export default {
       this.addLocation(coords)
     });
     //end of Listener
-    // Listener for user updated location coming back
+    // Listener for user new location coming back with extra info
     this.glasgowMap.addEventListener(
-      eventBus.$on('location-updated', (userLocation) => {
+      eventBus.$on('location-newmarker', (userLocation) => {
         L.marker([userLocation.latitude, userLocation.longitude]).addTo(this.glasgowMap)
         .bindPopup(userLocation.title + "<br />" + userLocation.address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
       })
@@ -54,7 +54,6 @@ export default {
     // ROUTE SETTER
 
     L.control.locate().addTo(this.glasgowMap);
-    // console.log(L.control.locate().addTo(this.glasgowMap));
 
     let control = L.Routing.control({
       router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9', {
@@ -77,7 +76,6 @@ export default {
 
 //To Several locations
     eventBus.$on('tour-locations', (location) => {
-      control.spliceWaypoints(1, location.length)
 
       let counter = 1;
 
@@ -86,12 +84,14 @@ export default {
         counter++
       }
 
+      eventBus.$on('tour-deleted', () => {
+        control.spliceWaypoints(1, location.length)
+      })
 
     });
 
-      eventBus.$on('clear-tour', () => {
-        control.spliceWaypoints(0)
-      });
+
+
 
 
 
@@ -103,6 +103,10 @@ export default {
         lng: endLocation[1]
       }
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
+
+      eventBus.$on('tour-deleted', () => {
+        control.spliceWaypoints(1, 1)
+      })
     });
 
 

@@ -27,10 +27,12 @@ export default {
       this.selectedLocation = foundPlaque
 
       eventBus.$emit('selected-location', this.selectedLocation)
+      eventBus.$emit('option-selected', 'details')
     },
     handleSelect(){
       this.search = ""
       eventBus.$emit('selected-location', this.selectedLocation)
+      eventBus.$emit('option-selected', 'details')
     }
   }
 }
@@ -45,10 +47,9 @@ form{
   margin: 0 auto;
 }
 
-input{
-  width: 15vw;
+input,
+select{
+  width: 14vw;
 }
-select {
-  width: 15vw;
-}
+
 </style>
