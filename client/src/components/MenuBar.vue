@@ -1,9 +1,15 @@
 <template lang="html">
   <div id="menu-bar">
+    <div id="main-menu" :class="toggled ? 'hide' : 'show'">
+
+
     <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="">
     <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="">
     <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="">
-    <img v-on:click="toggleSidebar" id="menu-icon" src="../assets/left-arrow.png" alt="">
+    </div>
+    <!-- <div id="menu-toggle"> -->
+      <img v-on:click="toggledMenu" :class="toggled ? 'hide' : 'show'" id="menu-toggle" src="../assets/left-arrow.png" alt="">
+    <!-- </div> -->
   </div>
 </template>
 
@@ -12,12 +18,19 @@ import {eventBus} from '@/main.js'
 
 export default {
   name: 'menu-bar',
+  data() {
+    return{
+      toggled: false
+    }
+  },
   methods: {
     show: function(show){
       eventBus.$emit('option-selected', show)
     },
-    toggleSidebar: function() {
+    toggledMenu(){
+      this.toggled = !this.toggled;
       eventBus.$emit('toggle-sidebar-on', 'toggle')
+      eventBus.$emit('option-selected', 'none')
     }
   }
 }
@@ -35,4 +48,14 @@ export default {
   height: 3em;
   margin: 5px 10px;
 }
+
+#main-menu.show {
+  width: 25vw;
+}
+
+#main-menu.hide {
+  display: none;
+}
+
+
 </style>

@@ -1,8 +1,11 @@
 <template lang="html">
-  <div id="sidebar-container" :class="toggled ? 'show' : 'hide'" v-on:click="toggleMenu">
-    <MenuBar/>
-    <div id="search-container">
-      <PlaqueSearch :locations="locations"/>
+  <div id="sidebar-container" :class="toggled ? 'hide' : 'show'" v-on:click="toggleMenu">
+    <div id="top-bar">
+    <MenuBar />
+    </div>
+
+    <div id="search-container" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
+      <PlaqueSearch :locations="locations" />
     </div>
     <div id="sidebar-components">
       <div id="details-container" v-if="this.show === 'details'">
@@ -18,14 +21,15 @@
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
 
+
+
     </div>
-    <FooterBar/>
+    <FooterBar />
   </div>
 </template>
 
 <script>
 
-import SidebarToggle from './SidebarToggle'
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
@@ -88,8 +92,9 @@ export default {
         case 'update':
           this.show = 'update';
           break;
-
-
+        case 'none':
+          this.show = 'none';
+          break;
       }
     })
   },
@@ -109,24 +114,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
-
-/* #toggle-button {
-  position: absolute;
-  left: 150%;
-  top: 15px;
-} */
-
-/* #toggle-button span{
-  display: block;
-  background-color: black;
-  width: 30px;
-  height: 5px
-} */
-
-/* #sidebar-container.active {
-  left: 0;
-} */
 
 #sidebar-container{
   display: flex;
@@ -186,6 +173,11 @@ FooterBar{
 
 #sidebar-container.hide {
   width: 5em;
+}
+
+#empty-container {
+  display: none;
+  z-index: 999;
 }
 
 </style>
