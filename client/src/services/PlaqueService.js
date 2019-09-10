@@ -22,7 +22,7 @@ export default {
   updateLocation(id, location) {
     return fetch(baseURL + id, {
       method: 'PUT',
-      body: JSON.stringify(locationse),
+      body: JSON.stringify(location),
       headers: { 'Content-Type' : 'application/json' }
     })
     .then(res => res.json())
