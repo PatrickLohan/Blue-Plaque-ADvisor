@@ -1,8 +1,11 @@
 <template lang="html">
-  <div id="sidebar-container">
-    <MenuBar/>
-    <div id="search-container">
-      <PlaqueSearch :locations="locations"/>
+  <div id="sidebar-container" :class="toggled ? 'hide' : 'show'" v-on:click="toggleMenu">
+    <div id="top-bar">
+    <MenuBar />
+    </div>
+
+    <div id="search-container" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
+      <PlaqueSearch :locations="locations" />
     </div>
     <div id="sidebar-components">
       <div id="details-container" v-if="this.show === 'details'">
@@ -18,9 +21,8 @@
         <UserUpdatePlaque v-if="userLocation._id" :userLocation="userLocation"/>
         <UserAddPlaque v-if="!userLocation._id" :userLocation="userLocation"/>
       </div>
-
     </div>
-    <FooterBar/>
+    <FooterBar />
   </div>
 </template>
 
@@ -56,7 +58,8 @@ export default {
     return{
       favourites: [],
       userLocation: "",
-      show: null
+      show: null,
+      toggled: false
     }
   },
   mounted(){
@@ -70,12 +73,12 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     }),
-    eventBus.$on('toggle-sidebar-on', () => {
-    document.getElementById("sidebar-container", "sidebar-components").style.width = "4em";
+    eventBus.$on('toggle-sidebar-on', (toggle) => {
+      this.toggled = !this.toggled;
     }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
-    })
+    }),
     eventBus.$on('option-selected', (value) => {
       switch (value) {
         case 'home':
@@ -90,14 +93,18 @@ export default {
         case 'update':
           this.show = 'update';
           break;
-
-
+        case 'none':
+          this.show = 'none';
+          break;
       }
     })
   },
   methods: {
-    openNav() {
-      document.getElementById("sidebar-container").style.width = "20em";
+    toggleMenu: function() {
+      eventBus.$emit('move-toggle-button')
+    },
+    toggleMenu() {
+      document.getElementById("sidebar-container").classList.toggle('active')
     },
     closeNav() {
       document.getElementById("sidebar-container").style.width = "5em";
@@ -109,36 +116,25 @@ export default {
 
 <style lang="css" scoped>
 
-#sidebar-toggle {
-  /* position: absolute;
-  right: 400px; */
-}
-
 #sidebar-container{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 300px;
-  width: 25vw;
+  width: 25em;
   height: 100vh;
   background-color: #477CDE;
   display: flex;
   flex-direction: column;
-  /* justify-content: flex-end; */
 }
-
-/* #search-container{
-  margin: 5px 20px;
-  width: 20vw;
-} */
 
 #sidebar-components {
   padding: 1px 5px;
-  margin: 0 3vw;
-  background-color: white;
+  margin: 0 2vw;
+  background-color: #E5EDFB;
   color: black;
-  border-style: groove;
   border-radius: 3%;
+  display: flex;
+  justify-content: space-between;
 }
 
 #details-container,
@@ -146,25 +142,37 @@ export default {
 #update-container,
 #home-container {
   height: 50vh;
-  padding: 10px;
-  overflow: auto;
-}
-
-#update-container {
   padding: 5px;
+  overflow: auto;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: flex-start;
 }
 
 #search-container{
-  width: 10vw;
   align-self: center;
 }
 
-#menu-bar{
+MenuBar{
   height: 10vh;
 }
 
 FooterBar{
   height: 10vh;
+}
+
+#sidebar-container.show {
+  width: 25vw;
+}
+
+#sidebar-container.hide {
+  width: 5vw;
+}
+
+#empty-container {
+  display: none;
+  z-index: 999;
 }
 
 </style>

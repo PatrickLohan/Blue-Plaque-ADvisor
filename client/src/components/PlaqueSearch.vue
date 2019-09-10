@@ -47,11 +47,10 @@ form{
   margin: 0 auto;
 }
 
-input{
-  width: 15vw;
-}
-select {
-  width: 15vw;
+input, select{
+  width: 14vw;
   cursor: pointer;
 }
+
+
 </style>

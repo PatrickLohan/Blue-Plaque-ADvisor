@@ -12,7 +12,7 @@ export default {
 <style lang="css" scoped>
 
 #footer-bar{
-  background-color: #FFBC3F;
+  background-color: #FF903F;
   padding: 10px;
   text-align: center;
 }
