@@ -45,10 +45,9 @@ form{
   margin: 0 auto;
 }
 
-input{
-  width: 15vw;
+input,
+select{
+  width: 14vw;
 }
-select {
-  width: 15vw;
-}
+
 </style>
