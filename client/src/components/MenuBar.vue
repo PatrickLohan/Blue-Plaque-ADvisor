@@ -49,6 +49,13 @@ export default {
   margin: 5px 10px;
 }
 
+#menu-icon:hover {
+  border-bottom: 3px solid #477CDE;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  margin-bottom: 0px;
+}
+
 #main-menu.show {
   width: 25vw;
 }
