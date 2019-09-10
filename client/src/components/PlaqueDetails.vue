@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
-    <p>{{location.title | upperCase}}</p>
-    <p>{{location.inscription | capitalize}}</p>
-    <p>{{location.erected_at}}</p>
+    <p v-if="location.title">{{location.title | upperCase}}</p>
+    <p v-if="location.inscription">{{location.inscription | capitalize}}</p>
+    <p v-if="location.erected_at">{{location.erected_at}}</p>
     <div id="favourites button">
       <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
@@ -17,10 +17,10 @@
 </template>
 
 <script>
-import PlaqueSearch from './PlaqueSearch'
+import PlaqueSearch from '@/components/PlaqueSearch'
 import PlaqueService from '@/services/PlaqueService.js'
 import VueMap from '@/components/VueMap.vue'
-import {eventBus} from '../main.js'
+import {eventBus} from '@/main.js'
 
 export default {
   props: ['location', 'favourites'],

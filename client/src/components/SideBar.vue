@@ -26,15 +26,15 @@
 
 <script>
 
-import SidebarToggle from './SidebarToggle'
-import PlaqueSearch from './PlaqueSearch'
-import PlaqueFavourites from './PlaqueFavourites'
-import PlaqueDetails from './PlaqueDetails'
-import UserUpdatePlaque from './UserUpdatePlaque'
-import UserAddPlaque from './UserAddPlaque'
-import MenuBar from './MenuBar'
-import FooterBar from './FooterBar'
-import PlaqueHome from './PlaqueHome'
+import SidebarToggle from '@/components/SidebarToggle'
+import PlaqueSearch from '@/components/PlaqueSearch'
+import PlaqueFavourites from '@/components/PlaqueFavourites'
+import PlaqueDetails from '@/components/PlaqueDetails'
+import UserUpdatePlaque from '@/components/UserUpdatePlaque'
+import UserAddPlaque from '@/components/UserAddPlaque'
+import MenuBar from '@/components/MenuBar'
+import FooterBar from '@/components/FooterBar'
+import PlaqueHome from '@/components/PlaqueHome'
 import {eventBus} from '@/main.js'
 
 

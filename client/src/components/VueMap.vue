@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js';
+import {eventBus} from '@/main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 import 'leaflet-routing-machine';

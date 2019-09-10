@@ -1,12 +1,12 @@
 <template lang="html">
   <div id="favourites-item" v-on:click="goToDetails">
     <hr>
-    <li>{{favourite.title | upperCase}}<br>{{favourite.address | capitalize}}<hr></li>
+    <li>{{favourite.title | upperCase}}<br />{{favourite.address | capitalize}}<hr></li>
   </div>
 </template>
 
 <script>
-import {eventBus} from '../main.js';
+import {eventBus} from '@/main.js';
 
 export default {
   name: "favourites-item",
