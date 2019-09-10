@@ -45,7 +45,7 @@ export default {
       eventBus.$emit('update-location', this.location);
       eventBus.$emit('option-selected', 'update');
     },
-    moreInfo: function(location){
+    moreInfo: function(){
       // get uri from database for requested plaque
       let moreInfoUrl = this.location.people[0].uri;
       // make it a variable
