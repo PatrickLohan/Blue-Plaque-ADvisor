@@ -71,11 +71,13 @@ export default {
         lat: e.latitude,
         lng: e.longitude
       };
-      
+
       control.spliceWaypoints(0, 1, beginLocation)
     })
 
-
+    eventBus.$on('tour-locations', (location) => {
+      console.log(location);
+    })
 
     eventBus.$on('route-end', (endLocation) => {
 
@@ -84,7 +86,11 @@ export default {
         lng: endLocation[1]
       }
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
-    });
+    })
+
+
+
+    ;
   }
     // TESTING FOR ROUTE END
   ,
