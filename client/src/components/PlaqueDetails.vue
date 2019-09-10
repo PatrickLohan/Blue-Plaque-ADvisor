@@ -8,7 +8,7 @@
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
       <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
       <h3 v-on:click="updateLocation">Update Details</h3>
-      <!-- <h3 v-on:click="goWiki">More Info!</h3> -->
+      <h3 v-on:click="moreInfo">More Info!</h3>
       <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
@@ -39,6 +39,18 @@ export default {
     updateLocation: function(location){
       eventBus.$emit('update-location', this.location);
       eventBus.$emit('option-selected', 'update');
+    },
+    moreInfo: function(location){
+    let moreInfoUrl = this.location.people[0].uri;
+    let payload = {uri: moreInfoUrl}
+    fetch('http://localhost:3000/api/plaques/plaque-data', {
+      method: 'POST',
+      body: JSON.stringify(payload),
+      headers: {'Content-Type': 'application/json'}
+  })
+      .then(res => res.json())
+      .then(data => console.log(data))
+
     }
   }
 }

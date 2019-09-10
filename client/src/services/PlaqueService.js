@@ -6,6 +6,8 @@ export default {
     return fetch(baseURL)
     .then(res => res.json())
   },
+
+  // used to get further api info
   postLocations(payload){
     return fetch(baseURL, {
       method: 'POST',
@@ -14,6 +16,7 @@ export default {
     })
     .then(res => res.json())
   },
+
   deleteLocations(id){
     return fetch(baseURL + id, {
       method: 'DELETE'
