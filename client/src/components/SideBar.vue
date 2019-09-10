@@ -1,24 +1,24 @@
 <template lang="html">
   <div id="sidebar-container">
     <MenuBar/>
+    <div id="search-container">
+      <PlaqueSearch :locations="locations"/>
+    </div>
     <div id="sidebar-components">
-      <div id="search-container">
-        <PlaqueSearch :locations="locations"/>
-      </div>
       <div id="details-container" v-if="this.show === 'details'">
         <PlaqueDetails :location="location" :favourites="favourites"/>
       </div>
       <div id="favourites-container" v-if="this.show === 'favourites'">
         <PlaqueFavourites :favourites="favourites"/>
       </div>
-      <div id="home-container" v-if="this.show === 'home'">
+      <div id="home-container" v-if="this.show === 'home' || this.show === null">
         <PlaqueHome/>
       </div>
       <div id="update-container" v-if="this.show === 'update'">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
     </div>
-    <div>Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/"         title="Flaticon">www.flaticon.com</a></div>
+    <FooterBar/>
   </div>
 </template>
 
@@ -28,6 +28,7 @@ import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
 import UserUpdatePlaque from './UserUpdatePlaque'
 import MenuBar from './MenuBar'
+import FooterBar from './FooterBar'
 import PlaqueHome from './PlaqueHome'
 import {eventBus} from '@/main.js'
 
@@ -42,13 +43,14 @@ export default {
     PlaqueDetails,
     PlaqueFavourites,
     PlaqueSearch,
-    UserUpdatePlaque
+    UserUpdatePlaque,
+    FooterBar
   },
   data() {
     return{
       favourites: [],
       userLocation: "",
-      show: ""
+      show: null
     }
   },
   mounted(){
@@ -65,17 +67,7 @@ export default {
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
     })
-    // eventBus.$on('home-selected', () => {
-    //   let showComponent = home
-    // }),
-    // eventBus.$on('details-selected', () => {
-    //   let showComponent = details
-    // }),
-    // eventBus.$on('favourites-selected', () => {
-    //   let showComponent = favourites
-    // }),
     eventBus.$on('option-selected', (value) => {
-
       switch (value) {
         case 'home':
           this.show = 'home';
@@ -102,30 +94,50 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25em;
+  min-width: 300px;
+  width: 25vw;
+  height: 100vh;
   background-color: #477CDE;
 }
 
+/* #search-container{
+  margin: 5px 20px;
+  width: 20vw;
+} */
+
 #sidebar-components {
-  padding: 5px;
-  margin: 3em;
-  color: white;
+  padding: 1px 5px;
+  margin: 0 3vw;
+  background-color: white;
+  color: black;
+  border-style: groove;
+  border-radius: 3%;
 }
 
 #details-container,
 #favourites-container,
 #update-container,
 #home-container {
-  border-style: groove;
-  border-radius: 3%;
+  height: 50vh;
+  padding: 10px;
+  overflow: auto;
 }
 
 #update-container {
   padding: 5px;
 }
 
+#search-container{
+  width: 10vw;
+  align-self: center;
+}
+
 #menu-bar{
-  margin-top: 10px;
+  height: 10vh;
+}
+
+FooterBar{
+  height: 10vh;
 }
 
 </style>
