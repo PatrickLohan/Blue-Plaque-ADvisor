@@ -3,7 +3,7 @@
     <input type="text" v-model="search" placeholder="search for Plaque..." v-on:keyup="searchForPlaque">
     <select v-on:change="handleSelect" v-model="selectedLocation">
       <option disabled value="">Select a location...</option>
-      <option v-for="location in locations" :value="location">{{location.title}}</option>
+      <option v-for="location in locations" :value="location">{{location.title | upperCase}}</option>
     </select>
   </form>
 </template>

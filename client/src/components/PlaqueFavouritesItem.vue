@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="favourites-item" v-on:click="goToDetails">
     <hr>
-    <li>{{favourite.title}}<br>{{favourite.address}}<hr></li>
+    <li>{{favourite.title | upperCase}}<br>{{favourite.address | capitalize}}<hr></li>
   </div>
 </template>
 

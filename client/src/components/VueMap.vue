@@ -119,9 +119,9 @@ export default {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
         if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title, alt: this.locations[i].title, riseOnHover: true})
+          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title.capitalize, alt: this.locations[i].title, riseOnHover: true})
           .addTo(this.glasgowMap)
-          .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title + "</b><br />"
+          .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title.toUpperCase() + "</b><br />"
           + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
           .on("click", function(marker) {
             let location = marker.latlng;

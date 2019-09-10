@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
-    <p>{{location.title}}</p>
-    <p>{{location.inscription}}</p>
+    <p>{{location.title | upperCase}}</p>
+    <p>{{location.inscription | capitalize}}</p>
     <p>{{location.erected_at}}</p>
     <div id="favourites button">
       <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
