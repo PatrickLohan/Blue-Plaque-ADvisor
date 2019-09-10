@@ -76,7 +76,6 @@ export default {
 
 //To Several locations
     eventBus.$on('tour-locations', (location) => {
-      control.spliceWaypoints(1, location.length)
 
       let counter = 1;
 
@@ -85,8 +84,13 @@ export default {
         counter++
       }
 
+      eventBus.$on('tour-deleted', () => {
+        control.spliceWaypoints(1, location.length)
+      })
 
     });
+
+
 
 
 
@@ -99,6 +103,10 @@ export default {
         lng: endLocation[1]
       }
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
+
+      eventBus.$on('tour-deleted', () => {
+        control.spliceWaypoints(1, 1)
+      })
     });
 
 

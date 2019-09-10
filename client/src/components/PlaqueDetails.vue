@@ -10,6 +10,7 @@
       <h3 v-on:click="updateLocation">Update Details</h3>
       <!-- <h3 v-on:click="goWiki">More Info!</h3> -->
       <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
+      <h3 v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude">I Have Arrived!</h3>
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
   </div>
@@ -39,6 +40,9 @@ export default {
     updateLocation: function(location){
       eventBus.$emit('update-location', this.location);
       eventBus.$emit('option-selected', 'update');
+    },
+    arrivedAtLocation: function(){
+      eventBus.$emit('tour-deleted');
     }
   }
 }
