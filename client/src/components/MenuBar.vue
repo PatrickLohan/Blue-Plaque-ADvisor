@@ -15,15 +15,6 @@ export default {
     show: function(show){
       eventBus.$emit('option-selected', show)
     },
-    // showHome: function(icon){
-    //   eventBus.$emit('home-selected', this.menu-icon)
-    // },
-    // showDetails: function(icon){
-    //   eventBus.$emit('details-selected', this.menu-icon)
-    // },
-    // showFavourites: function(icon){
-    //   eventBus.$emit('favourites-selected', this.menu-icon)
-    // }
   }
 }
 </script>
@@ -32,6 +23,8 @@ export default {
 #menu-bar {
   display: flex;
   justify-content: space-around;
+  background-color: #FF903F;
+  align-items: center;
 }
 #menu-icon{
   width: 3em;

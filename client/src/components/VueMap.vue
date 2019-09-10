@@ -135,6 +135,7 @@ export default {
         userAdded: true
       };
       eventBus.$emit('location-added', payload);
+      eventBus.$emit('option-selected', 'update');
     }
 
   }
