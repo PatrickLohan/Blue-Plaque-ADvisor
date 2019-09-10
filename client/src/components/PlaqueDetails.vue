@@ -7,6 +7,7 @@
       <img v-on:click="updateLocation" src="../assets/update.png">
       <!-- <h3 v-on:click="goWiki">More Info!</h3> -->
       <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
+      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
     <p>{{location.title}}</p>
@@ -39,6 +40,9 @@ export default {
     updateLocation: function(location){
       eventBus.$emit('update-location', this.location);
       eventBus.$emit('option-selected', 'update');
+    },
+    arrivedAtLocation: function(){
+      eventBus.$emit('tour-deleted');
     }
   }
 }
