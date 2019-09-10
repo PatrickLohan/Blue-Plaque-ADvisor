@@ -27,10 +27,12 @@ export default {
       this.selectedLocation = foundPlaque
 
       eventBus.$emit('selected-location', this.selectedLocation)
+      eventBus.$emit('option-selected', 'details')
     },
     handleSelect(){
       this.search = ""
       eventBus.$emit('selected-location', this.selectedLocation)
+      eventBus.$emit('option-selected', 'details')
     }
   }
 }

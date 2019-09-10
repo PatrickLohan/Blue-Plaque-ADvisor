@@ -2,8 +2,8 @@
   <div id="favourites-list">
     <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
 
-    <h3 v-on:click="planTour">Plan Tour</h3>
-    <h3 v-on:click="clearTour">Yay, I'm here</h3>
+    <h3 v-on:click="planTour" v-if="this.favourites.length">Plan Favourite Tour</h3>
+    <h3 v-on:click="clearTour" v-if="this.favourites.length">Yay, I'm here</h3>
   </div>
 </template>
 
@@ -39,7 +39,7 @@ export default {
       eventBus.$emit('tour-locations', tourCoords);
     },
   clearTour: function() {
-    eventBus.$emit('clear-tour');
+    eventBus.$emit('tour-deleted');
   }
   }
 }
