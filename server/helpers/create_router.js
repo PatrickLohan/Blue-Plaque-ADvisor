@@ -47,6 +47,7 @@ const createRouter = function (collection) {
    });
 
    // Gets extra api info
+   // done as POST as other server didnt like GET
    router.post('/plaque-data', (req, res) => {
      let url = req.body.uri;
      fetch(url)

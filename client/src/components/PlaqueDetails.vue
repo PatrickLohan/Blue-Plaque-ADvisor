@@ -25,6 +25,11 @@ export default {
   props: ['location', 'favourites'],
   components: {
   },
+  data() {
+    return {
+      "furtherInfo": null
+    }
+  },
   methods: {
     addFavourite: function(location) {
       eventBus.$emit('plaque-favourited', this.location)
@@ -41,29 +46,32 @@ export default {
       eventBus.$emit('option-selected', 'update');
     },
     moreInfo: function(location){
-    let moreInfoUrl = this.location.people[0].uri;
-    let payload = {uri: moreInfoUrl}
-    fetch('http://localhost:3000/api/plaques/plaque-data', {
-      method: 'POST',
-      body: JSON.stringify(payload),
-      headers: {'Content-Type': 'application/json'}
-  })
+      // get uri from database for requested plaque
+      let moreInfoUrl = this.location.people[0].uri;
+      // make it a variable
+      let payload = {uri: moreInfoUrl}
+      // pass it to our server to get api data back to avoid CORS issue
+      fetch('http://localhost:3000/api/plaques/plaque-data', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: {'Content-Type': 'application/json'}
+      })
       .then(res => res.json())
-      .then(data => console.log(data))
-
+      .then(data => this.furtherInfo = data)
+      // see also PlaqueService.js and create_router.js
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
-  #plaque-details {
-    display: flex;
-    flex-direction: column;
-    max-height: inherit;
-  }
+#plaque-details {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
 
-  h3:hover {
-    color: lightgrey;
-  }
+h3:hover {
+  color: lightgrey;
+}
 </style>
