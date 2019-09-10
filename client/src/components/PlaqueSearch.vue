@@ -38,7 +38,17 @@ export default {
 
 <style lang="css" scoped>
 
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+input{
+  width: 15vw;
+}
 select {
-  width: 20em;
+  width: 15vw;
 }
 </style>

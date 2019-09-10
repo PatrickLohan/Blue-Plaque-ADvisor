@@ -14,7 +14,6 @@ export default {
 
 <style lang="css" scoped>
 li{
-  color: white;
   text-decoration: none;
   list-style: none;
   text-align: left;
