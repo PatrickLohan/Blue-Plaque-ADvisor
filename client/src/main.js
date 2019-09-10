@@ -33,7 +33,7 @@ Vue.filter(
 Vue.filter(
   'formatDate', function(value){
   if (value) {
-    return moment(String(value)).format('MMMM DDD, YYYY')
+    return moment(String(value)).format('MMMM DD, YYYY')
   }
 })
 
