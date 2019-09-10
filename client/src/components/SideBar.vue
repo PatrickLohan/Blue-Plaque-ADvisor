@@ -159,5 +159,4 @@ MenuBar{
 FooterBar{
   height: 10vh;
 }
-
 </style>

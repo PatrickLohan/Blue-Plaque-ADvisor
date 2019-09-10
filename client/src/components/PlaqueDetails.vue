@@ -3,9 +3,7 @@
     <div id="mini-buttons">
       <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png">
       <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png">
-      <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
       <img v-on:click="updateLocation" src="../assets/update.png">
-      <!-- <h3 v-on:click="goWiki">More Info!</h3> -->
       <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
       <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
@@ -49,25 +47,30 @@ export default {
 </script>
 
 <style lang="css" scoped>
-  #plaque-details {
-    display: flex;
-    flex-direction: column;
-    max-height: inherit;
-  }
+#plaque-details {
+  display: flex;
+  flex-direction: column;
+  max-height: inherit;
+}
 
-  h3:hover {
-    color: lightgrey;
-  }
+#mini-buttons{
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
-  #mini-buttons{
-    margin: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
+img{
+  width: 2em;
+  height: 2em;
+  padding: 1px;
+  margin-bottom: 3px;
+}
 
-  img{
-    width: 2em;
-    height: 2em;
-  }
+img:hover {
+  border-bottom: 3px solid #477CDE;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  margin-bottom: 0px;
+}
 </style>

@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="menu-bar">
-    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="home">
+    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="home" title="home">
     <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="details">
     <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="favourites">
   </div>
@@ -31,4 +31,13 @@ export default {
   height: 3em;
   margin: 5px 10px;
 }
+
+#menu-icon:hover {
+  border-bottom: 3px solid #477CDE;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  margin-bottom: 0px;
+}
+
+
 </style>
