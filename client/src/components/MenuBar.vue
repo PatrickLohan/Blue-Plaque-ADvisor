@@ -20,6 +20,11 @@ export default {
       toggled: false
     }
   },
+  mounted() {
+    eventBus.$on('show-toggle', (value) => {
+      this.toggled = value;
+    })
+  },
   methods: {
     show: function(show){
       eventBus.$emit('option-selected', show)

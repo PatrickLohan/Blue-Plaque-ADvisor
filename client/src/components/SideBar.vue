@@ -77,6 +77,9 @@ export default {
     eventBus.$on('toggle-sidebar-on', (toggle) => {
       this.toggled = !this.toggled;
     }),
+    eventBus.$on('show-toggle', (value) => {
+      this.toggled = value;
+    }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
     }),
@@ -104,12 +107,12 @@ export default {
     toggleMenu: function() {
       eventBus.$emit('move-toggle-button')
     },
-    // toggleMenu() {
-    //   document.getElementById("sidebar-container").classList.toggle('active')
-    // },
-    // closeNav() {
-    //   document.getElementById("sidebar-container").style.width = "5em";
-    // }
+    toggleMenu() {
+      document.getElementById("sidebar-container").classList.toggle('active')
+    },
+    closeNav() {
+      document.getElementById("sidebar-container").style.width = "5em";
+    }
   }
 
 }

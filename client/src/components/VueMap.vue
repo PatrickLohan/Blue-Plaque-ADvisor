@@ -127,6 +127,7 @@ export default {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
             eventBus.$emit('option-selected', 'details')
+            eventBus.$emit('show-toggle', false)
           });
         }
       }
