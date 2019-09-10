@@ -1,5 +1,5 @@
 <template lang="html">
-  <h1 v-on:click="toggleSidebar">HELLO</h1>
+  <!-- <h1 v-on:click="toggleSidebar">HELLO</h1> -->
 </template>
 
 <script>

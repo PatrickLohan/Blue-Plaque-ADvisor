@@ -23,7 +23,7 @@ export default {
       zoom: 12,
       center: [55.860497, -4.257916],
       url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <a href="https://www.graphhopper.com/">GraphHopper API</a>',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors | <a href="https://www.graphhopper.com/">GraphHopper API</a> | <a href="https://www.liedman.net/leaflet-routing-machine/">Leaflet Routing Machine</a> | <a href="https://github.com/domoritz/leaflet-locatecontrol">Leaflet Locatecontrol</a>',
       longitude: "",
       latitude: "",
       userAdded: null
@@ -89,9 +89,6 @@ export default {
 
     });
 
-      eventBus.$on('clear-tour', () => {
-        control.spliceWaypoints(0)
-      });
 
 
 
