@@ -73,12 +73,29 @@ export default {
       };
 
       control.spliceWaypoints(0, 1, beginLocation)
-    })
+    });
 
+//To Several locations
     eventBus.$on('tour-locations', (location) => {
-      console.log(location);
-    })
+      control.spliceWaypoints(1, location.length)
 
+      let counter = 1;
+
+      for (let i = 0; i < location.length; i++) {
+        control.spliceWaypoints(counter, 1, location[i])
+        counter++
+      }
+
+
+    });
+
+      eventBus.$on('clear-tour', () => {
+        control.spliceWaypoints(0)
+      });
+
+
+
+// To Just One Location
     eventBus.$on('route-end', (endLocation) => {
 
       let endLatLng = {
@@ -86,11 +103,11 @@ export default {
         lng: endLocation[1]
       }
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
-    })
+    });
 
 
 
-    ;
+
   }
     // TESTING FOR ROUTE END
   ,
