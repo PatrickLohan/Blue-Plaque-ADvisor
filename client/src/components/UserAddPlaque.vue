@@ -40,8 +40,8 @@ export default {
         this.title = this.subjects = this.colour_name = this.inscription = this.address = ""
         this.userLocation.userAdded = false
         eventBus.$emit('location-newmarker', res)
+        eventBus.$emit('option-selected', 'details')
       })
-      eventBus.$emit('option-selected', 'details');
     }
     }
 
