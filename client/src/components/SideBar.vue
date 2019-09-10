@@ -69,7 +69,7 @@ export default {
     }),
     eventBus.$on('toggle-sidebar-on', () => {
     document.getElementById("sidebar-container", "sidebar-components").style.width = "4em";
-    
+    }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
     })
