@@ -9,6 +9,7 @@
       <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
       <h3 v-on:click="updateLocation">Update Details</h3>
       <h3 v-on:click="moreInfo">More Info!</h3>
+      <h3 v-on:click="deleteLocation(location._id)">Delete</h3>
       <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
@@ -62,6 +63,11 @@ export default {
         window.open(this.furtherInfo.wikipedia_url, '_blank')
       })
       // see also PlaqueService.js and create_router.js
+    },
+    deleteLocation: function(id){
+      PlaqueService.deleteLocations(id)
+      .then(response =>
+      eventBus.$emit('location-deleted', id));
     }
   }
 }
