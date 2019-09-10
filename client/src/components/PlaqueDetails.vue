@@ -8,8 +8,10 @@
       <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
     </div>
     <p v-if="location.title">{{location.title | upperCase}}</p>
+    <h3>Inscription</h3>
     <p v-if="location.inscription">{{location.inscription | capitalize}}</p>
-    <p v-if="location.erected_at">{{location.erected_at}}</p>
+    <h3 v-if="location.erected_at">Placed on </h3>
+    <p v-if="location.erected_at">{{location.erected_at | formatDate}}</p>
     <p v-if="!location.latitude || !location.longitude">No Coordinates For This Plaque</p>
   </div>
 </template>
@@ -47,6 +49,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h3 {
+  margin: 0;
+}
 #plaque-details {
   display: flex;
   flex-direction: column;

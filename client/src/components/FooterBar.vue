@@ -1,6 +1,6 @@
 <template lang="html">
-  <div id="footer-bar" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
-    <p>footer dummy text</p>
+  <div id="footer-bar">
+    <p v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">footer dummy text</p>
   </div>
 </template>
 
