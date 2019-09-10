@@ -25,23 +25,23 @@ export default {
       colour_name: this.userLocation.colour_name,
       inscription: this.userLocation.inscription,
       address: this.userLocation.address,
+      updatedLocation: {}
     }
   },
   props: ['userLocation'],
   methods: {
     updateLocation(location){
-      this.userLocation["title"]=this.title
-      this.userLocation["subjects"]=this.subjects
-      this.userLocation["colour_name"]=this.colour_name
-      this.userLocation["inscription"]=this.inscription
-      this.userLocation["address"]=this.address
-      // PlaqueService.postLocations(this.userLocation)
-      // .then((res) => {
-      //   this.title = this.subjects = this.colour_name = this.inscription = this.address = ""
-      //   this.userLocation.userAdded = false
-      //   eventBus.$emit('location-updated', res)
-      // })
-      console.log(this.userLocation)
+      this.updatedLocation["title"]=this.title
+      this.updatedLocation["subjects"]=this.subjects
+      this.updatedLocation["colour_name"]=this.colour_name
+      this.updatedLocation["inscription"]=this.inscription
+      this.updatedLocation["address"]=this.address
+      PlaqueService.updateLocation(this.userLocation._id, this.updatedLocation)
+      .then((res) => {
+        this.title = this.subjects = this.colour_name = this.inscription = this.address = ""
+        eventBus.$emit('location-updated', res)
+      })
+      console.log(this.updatedLocation)
       eventBus.$emit('option-selected', 'details');
     }
     }
