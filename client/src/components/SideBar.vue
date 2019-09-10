@@ -15,7 +15,8 @@
         <PlaqueHome/>
       </div>
       <div id="update-container" v-if="this.show === 'update'">
-        <UserUpdatePlaque :userLocation="userLocation"/>
+        <UserUpdatePlaque v-if="userLocation._id" :userLocation="userLocation"/>
+        <UserAddPlaque v-if="!userLocation._id" :userLocation="userLocation"/>
       </div>
 
     </div>
@@ -30,6 +31,7 @@ import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
 import UserUpdatePlaque from './UserUpdatePlaque'
+import UserAddPlaque from './UserAddPlaque'
 import MenuBar from './MenuBar'
 import FooterBar from './FooterBar'
 import PlaqueHome from './PlaqueHome'
@@ -47,6 +49,7 @@ export default {
     PlaqueFavourites,
     PlaqueSearch,
     UserUpdatePlaque,
+    UserAddPlaque,
     FooterBar
   },
   data() {
