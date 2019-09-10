@@ -31,7 +31,6 @@ const createRouter = function (collection) {
    router.put('/:id', (req, res) => {
      const id = req.params.id;
      const updatePlaque = req.body;
-     console.log('req.body:', updatePlaque);
      collection.findOneAndUpdate(
        { _id: ObjectID(id)},
        {$set: updatePlaque},

@@ -38,7 +38,7 @@ export default {
       this.addLocation(coords)
     });
     //end of Listener
-    // Listener for user new location coming back
+    // Listener for user new location coming back with extra info
     this.glasgowMap.addEventListener(
       eventBus.$on('location-newmarker', (userLocation) => {
         L.marker([userLocation.latitude, userLocation.longitude]).addTo(this.glasgowMap)

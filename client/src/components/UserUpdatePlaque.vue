@@ -41,7 +41,6 @@ export default {
         this.title = this.subjects = this.colour_name = this.inscription = this.address = ""
         eventBus.$emit('location-updated', res)
       })
-      console.log(this.updatedLocation)
       eventBus.$emit('option-selected', 'details');
     }
     }
