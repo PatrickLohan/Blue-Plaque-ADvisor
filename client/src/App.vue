@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <SidebarToggle/>
     <SideBar :location="selectedLocation" :locations="locations"/>
     <VueMap :locations="locations"/>
   </div>
@@ -11,6 +12,7 @@ import VueMap from './components/VueMap.vue'
 import SideBar from '@/components/SideBar'
 import PlaqueService from '@/services/PlaqueService'
 import PlaqueSearch from '@/components/PlaqueSearch'
+import SidebarToggle from '@/components/SidebarToggle'
 
 export default {
   name: 'app',
@@ -23,7 +25,8 @@ export default {
   components: {
     VueMap,
     SideBar,
-    PlaqueSearch
+    PlaqueSearch,
+    SidebarToggle
   },
   mounted(){
     this.fetchData();
@@ -34,10 +37,6 @@ export default {
 
 
     })
-    eventBus.$on('selected-location', (location) => {
-      this.selectedLocation = location
-    })
-
     eventBus.$on('selected-location', (location) => {
       this.selectedLocation = location
     })

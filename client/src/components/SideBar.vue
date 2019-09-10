@@ -12,12 +12,15 @@
       <div id="update-container" v-if="userLocation.userAdded">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
+
     </div>
-</div>
+    <!-- <a href="javascript:void(0)" id="sidebar-toggle" v-on:click="closeNav">&times;</a> -->
+  </div>
 </template>
 
 <script>
 
+import SidebarToggle from './SidebarToggle'
 import PlaqueSearch from './PlaqueSearch'
 import PlaqueFavourites from './PlaqueFavourites'
 import PlaqueDetails from './PlaqueDetails'
@@ -53,14 +56,17 @@ export default {
     }),
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
+    }),
+    eventBus.$on('toggle-sidebar-on', () => {
+      document.getElementById("sidebar-container", "sidebar-components").style.width = "4em";
     })
   },
   methods: {
     openNav() {
-      document.getElementById("sidebar-container").style.width = "25em";
+      document.getElementById("sidebar-container").style.width = "20em";
     },
     closeNav() {
-      document.getElementById("sidebar-container").style.width = "1em";
+      document.getElementById("sidebar-container").style.width = "5em";
     }
   }
 
@@ -68,16 +74,19 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
 #sidebar-toggle {
-  display: flex;
-  width: 5em;
-  height: 100%;
-  background-color: darkblue;
+  /* position: absolute;
+  right: 400px; */
 }
 
 #sidebar-container{
+  /* z-index: 999; */
   width: 25em;
   background-color: #477CDE;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: flex-end; */
 }
 
 #sidebar-components {
@@ -98,6 +107,10 @@ export default {
 
 #update-container {
   padding: 5px;
+}
+
+.closebtn {
+
 }
 
 
