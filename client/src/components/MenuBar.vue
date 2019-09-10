@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="menu-bar">
-    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="">
-    <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="">
-    <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="">
+    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="home">
+    <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="details">
+    <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="favourites">
   </div>
 </template>
 

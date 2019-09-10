@@ -1,7 +1,7 @@
 <template lang="html">
-<div>
+<div id="update-form">
   <form class="updateForm" v-on:submit.prevent="updateLocation">
-    <input type="text" v-model="title" value="title" required>
+    <input class="form-item" type="text" v-model="title" value="title" required>
     <input type="text" v-model="subjects" value="subjects">
     <input type="text" v-model="colour_name" value="colour_name" required>
     <textarea rows=10 v-model="inscription" value="inscription" required></textarea>
@@ -50,5 +50,21 @@ export default {
 
 <style lang="css" scoped>
 
+#update-form{
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+input,
+textarea {
+  border: 1px dotted grey;
+  width: 14vw;
+  margin: 5px 0;
+}
+
+input[type=submit]{
+  background-color: #FFDB3F;
+}
 
 </style>

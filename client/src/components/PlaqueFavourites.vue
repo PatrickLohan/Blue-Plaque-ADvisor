@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="favourites-list">
+    <h2>FAVOURITES</h2><hr>
     <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
-
     <h3 v-on:click="planTour" v-if="this.favourites.length">Plan Favourite Tour</h3>
     <h3 v-on:click="clearTour" v-if="this.favourites.length">Yay, I'm here</h3>
   </div>
@@ -46,4 +46,7 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h2{
+  line-height: 12px;
+}
 </style>
