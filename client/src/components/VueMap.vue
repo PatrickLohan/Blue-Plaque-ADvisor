@@ -54,7 +54,6 @@ export default {
     // ROUTE SETTER
 
     L.control.locate().addTo(this.glasgowMap);
-    // console.log(L.control.locate().addTo(this.glasgowMap));
 
     let control = L.Routing.control({
       router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9', {
