@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="favourites-item" v-on:click="goToDetails">
     <hr>
-    <li>{{favourite.title | upperCase}}<br />{{favourite.address | capitalize}}<hr></li>
+    <li alt="Show Details" title="Show Details">{{favourite.title | upperCase}}<br />{{favourite.address | capitalize}}<hr></li>
   </div>
 </template>
 
@@ -29,5 +29,12 @@ li{
   text-decoration: none;
   list-style: none;
   text-align: left;
+}
+li:hover{
+  text-decoration: none;
+  list-style: none;
+  text-align: left;
+  text-shadow: 0 0 5px grey;
+  cursor: pointer;
 }
 </style>

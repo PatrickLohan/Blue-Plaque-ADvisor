@@ -2,8 +2,8 @@
   <div id="favourites-list">
     <h2>FAVOURITES</h2><hr>
     <div id="mini-buttons">
-      <img v-on:click="planTour" v-if="this.favourites.length" src="../assets/directions.png">
-      <img v-on:click="clearTour" v-if="this.favourites.length" src="../assets/flag.png">
+      <img v-on:click="planTour" v-if="this.favourites.length" src="../assets/directions.png" alt="Plan Favourite Tour" title="Plan Favourite Tour">
+      <img v-on:click="clearTour" v-if="this.favourites.length" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
     </div>
     <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
 
@@ -12,6 +12,7 @@
 
 <script>
 import {eventBus} from '@/main.js';
+import PlaqueFavouritesItem from '@/components/PlaqueFavouritesItem';
 
 export default {
   name: 'favourites-view',
@@ -22,7 +23,7 @@ export default {
     }
   },
   components: {
-    PlaqueFavouritesItem: () => import('./PlaqueFavouritesItem')
+    PlaqueFavouritesItem
   },
   methods: {
     planTour: function() {
@@ -65,6 +66,7 @@ img{
   height: 2em;
   padding: 1px;
   margin-bottom: 3px;
+  cursor: pointer;
 }
 
 img:hover {
