@@ -14,7 +14,7 @@
       <div id="favourites-container" v-if="this.show === 'favourites'">
         <PlaqueFavourites :favourites="favourites"/>
       </div>
-      <div id="home-container" v-if="this.show === 'home' || this.show === null">
+      <div id="home-container" v-if="this.show === 'home' || this.show === null || !this.toggled">
         <PlaqueHome/>
       </div>
       <div id="update-container" v-if="this.show === 'update'">
