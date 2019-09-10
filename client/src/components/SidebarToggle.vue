@@ -3,8 +3,6 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js'
-
 export default {
   methods: {
     toggleSidebar: function() {
@@ -16,8 +14,6 @@ export default {
 
 <style lang="css" scoped>
 h1 {
-  height: 2em;
-  width: 3em;
   position: absolute;
   right: 400px;
   z-index: 998;
