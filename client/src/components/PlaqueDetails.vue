@@ -6,7 +6,11 @@
     <div id="favourites button">
       <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
-      <h3 v-on:click="goToLocation">Get Me Here</h3>
+      <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
+      <h3 v-on:click="updateLocation">Update Details</h3>
+      <h3 v-on:click="goWiki">More Info!</h3>
+      <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
+      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
   </div>
 </template>
@@ -31,6 +35,10 @@ export default {
     goToLocation: function(location) {
       let endLocation = [this.location.latitude, this.location.longitude];
       eventBus.$emit('route-end', endLocation);
+    },
+    updateLocation: function(location){
+      eventBus.$emit('update-location', this.location);
+      eventBus.$emit('option-selected', 'update');
     }
   }
 }
@@ -40,7 +48,7 @@ export default {
   #plaque-details {
     display: flex;
     flex-direction: column;
-    color: white;
+    max-height: inherit;
   }
 
   h3:hover {

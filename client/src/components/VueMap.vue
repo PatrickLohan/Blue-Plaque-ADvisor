@@ -9,6 +9,8 @@ import {eventBus} from '../main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 import 'leaflet-routing-machine';
+import 'lrm-graphhopper';
+import 'leaflet.locatecontrol';
 
 export default {
   name: 'glasgowMap',
@@ -21,7 +23,7 @@ export default {
       zoom: 12,
       center: [55.860497, -4.257916],
       url: 'https://maps.heigit.org/openmapsurfer/tiles/roads/webmercator/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors <a href="https://www.graphhopper.com/">GraphHopper API</a>',
       longitude: "",
       latitude: "",
       userAdded: null
@@ -49,18 +51,51 @@ export default {
     this.glasgowMap.options.minZoom = 11;
     L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
-
     // ROUTE SETTER
 
-    let control = L.Routing.control({}).addTo(this.glasgowMap);
+    L.control.locate().addTo(this.glasgowMap);
+    // console.log(L.control.locate().addTo(this.glasgowMap));
 
-    let beginLocation = {
-      lat: this.center[0],
-      lng: this.center[1]
-    };
+    let control = L.Routing.control({
+      router: new L.Routing.GraphHopper('73834236-5649-4fc6-995f-0587acdd1eb9', {
+        urlParameters: {
+          vehicle: 'foot'
+        }
+      })
+    }).addTo(this.glasgowMap);
 
-    control.spliceWaypoints(0, 1, beginLocation);
+    this.glasgowMap.locate()
+    .on('locationfound', function(e) {
 
+      let beginLocation = {
+        lat: e.latitude,
+        lng: e.longitude
+      };
+
+      control.spliceWaypoints(0, 1, beginLocation)
+    });
+
+//To Several locations
+    eventBus.$on('tour-locations', (location) => {
+      control.spliceWaypoints(1, location.length)
+
+      let counter = 1;
+
+      for (let i = 0; i < location.length; i++) {
+        control.spliceWaypoints(counter, 1, location[i])
+        counter++
+      }
+
+
+    });
+
+      eventBus.$on('clear-tour', () => {
+        control.spliceWaypoints(0)
+      });
+
+
+
+// To Just One Location
     eventBus.$on('route-end', (endLocation) => {
 
       let endLatLng = {
@@ -69,6 +104,10 @@ export default {
       }
       control.spliceWaypoints(control.getWaypoints().length - 1, 1, endLatLng)
     });
+
+
+
+
   }
     // TESTING FOR ROUTE END
   ,
@@ -83,6 +122,7 @@ export default {
           .on("click", function(marker) {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
+            eventBus.$emit('option-selected', 'details')
           });
         }
       }
@@ -95,6 +135,7 @@ export default {
         userAdded: true
       };
       eventBus.$emit('location-added', payload);
+      eventBus.$emit('option-selected', 'update');
     }
 
   }
