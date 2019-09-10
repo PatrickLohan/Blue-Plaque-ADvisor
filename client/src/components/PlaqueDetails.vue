@@ -34,16 +34,6 @@ export default {
     goToLocation: function(location) {
       let endLocation = [this.location.latitude, this.location.longitude];
       eventBus.$emit('route-end', endLocation);
-    },
-    goWiki: function(location) {
-      let result1 = function(location)
-      // fetch('')
-      // let win = window.open(this.location.people[0].wikipedia_url, '_blank');
-      // if (win) {
-      //   win.focus();
-      // } else {
-      //   alert('Please allow popups for this website');
-      // }
     }
   }
 }
