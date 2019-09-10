@@ -14,7 +14,7 @@
       <div id="home-container" v-if="this.show === 'home'">
         <PlaqueHome/>
       </div>
-      <div id="update-container" v-if="userLocation.userAdded">
+      <div id="update-container" v-if="this.show === 'update'">
         <UserUpdatePlaque :userLocation="userLocation"/>
       </div>
     </div>
@@ -62,6 +62,9 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     }),
+    eventBus.$on('update-location', (userLocation) => {
+      this.userLocation = userLocation;
+    })
     // eventBus.$on('home-selected', () => {
     //   let showComponent = home
     // }),
@@ -82,6 +85,9 @@ export default {
           break;
         case 'favourites':
           this.show = 'favourites';
+          break;
+        case 'update':
+          this.show = 'update';
           break;
 
 
