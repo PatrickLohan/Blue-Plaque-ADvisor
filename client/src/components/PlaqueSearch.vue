@@ -52,5 +52,6 @@ input{
 }
 select {
   width: 15vw;
+  cursor: pointer;
 }
 </style>

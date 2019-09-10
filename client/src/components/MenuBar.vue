@@ -1,8 +1,8 @@
 <template lang="html">
   <div id="menu-bar">
-    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="">
-    <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="">
-    <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="">
+    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="Homepage" title="Homepage">
+    <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="Details" title="Details">
+    <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="Favourites" title="Favourites">
   </div>
 </template>
 
@@ -30,5 +30,6 @@ export default {
   width: 3em;
   height: 3em;
   margin: 5px 10px;
+  cursor: pointer;
 }
 </style>
