@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      "furtherInfo": null
+      "furtherInfo": {}
     }
   },
   methods: {
@@ -57,7 +57,10 @@ export default {
         headers: {'Content-Type': 'application/json'}
       })
       .then(res => res.json())
-      .then(data => this.furtherInfo = data)
+      .then(data => {
+        this.furtherInfo = data
+        window.open(this.furtherInfo.wikipedia_url, '_blank')
+      })
       // see also PlaqueService.js and create_router.js
     }
   }
