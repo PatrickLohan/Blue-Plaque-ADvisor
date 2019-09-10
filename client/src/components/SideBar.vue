@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="sidebar-container">
+  <div id="sidebar-container" :class="toggled ? 'show' : 'hide'" v-on:click="toggleMenu">
     <MenuBar/>
     <div id="search-container">
       <PlaqueSearch :locations="locations"/>
@@ -53,7 +53,8 @@ export default {
     return{
       favourites: [],
       userLocation: "",
-      show: null
+      show: null,
+      toggled: false
     }
   },
   mounted(){
@@ -67,12 +68,12 @@ export default {
     eventBus.$on('location-added', (userLocation) => {
       this.userLocation = userLocation;
     }),
-    eventBus.$on('toggle-sidebar-on', () => {
-    document.getElementById("sidebar-container", "sidebar-components").style.width = "4em";
+    eventBus.$on('toggle-sidebar-on', (toggle) => {
+      this.toggled = !this.toggled;
     }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
-    })
+    }),
     eventBus.$on('option-selected', (value) => {
       switch (value) {
         case 'home':
@@ -93,8 +94,11 @@ export default {
     })
   },
   methods: {
-    openNav() {
-      document.getElementById("sidebar-container").style.width = "20em";
+    toggleMenu: function() {
+      eventBus.$emit('move-toggle-button')
+    },
+    toggleMenu() {
+      document.getElementById("sidebar-container").classList.toggle('active')
     },
     closeNav() {
       document.getElementById("sidebar-container").style.width = "5em";
@@ -106,17 +110,29 @@ export default {
 
 <style lang="css" scoped>
 
-#sidebar-toggle {
-  /* position: absolute;
-  right: 400px; */
-}
+
+/* #toggle-button {
+  position: absolute;
+  left: 150%;
+  top: 15px;
+} */
+
+/* #toggle-button span{
+  display: block;
+  background-color: black;
+  width: 30px;
+  height: 5px
+} */
+
+/* #sidebar-container.active {
+  left: 0;
+} */
 
 #sidebar-container{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 300px;
-  width: 25vw;
+  width: 25em;
   height: 100vh;
   background-color: #477CDE;
   display: flex;
@@ -162,6 +178,14 @@ export default {
 
 FooterBar{
   height: 10vh;
+}
+
+#sidebar-container.show {
+  width: 25em;
+}
+
+#sidebar-container.hide {
+  width: 5em;
 }
 
 </style>

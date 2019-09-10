@@ -8,7 +8,7 @@
       <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
       <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
       <h3 v-on:click="updateLocation">Update Details</h3>
-      <h3 v-on:click="goWiki">More Info!</h3>
+      <!-- <h3 v-on:click="goWiki">More Info!</h3> -->
       <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
