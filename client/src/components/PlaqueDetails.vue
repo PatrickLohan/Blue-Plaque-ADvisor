@@ -36,7 +36,7 @@ export default {
       eventBus.$emit('route-end', endLocation);
     },
     goWiki: function(location) {
-      console.log(location);
+      let result1 = function(location)
       // fetch('')
       // let win = window.open(this.location.people[0].wikipedia_url, '_blank');
       // if (win) {
