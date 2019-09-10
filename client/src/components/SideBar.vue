@@ -162,11 +162,11 @@ FooterBar{
 }
 
 #sidebar-container.show {
-  width: 25em;
+  width: 25vw;
 }
 
 #sidebar-container.hide {
-  width: 5em;
+  width: 5vw;
 }
 
 #empty-container {
