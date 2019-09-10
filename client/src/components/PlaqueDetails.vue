@@ -1,16 +1,16 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
     <div id="mini-buttons">
-      <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png">
-      <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png">
-      <img v-on:click="updateLocation" src="../assets/update.png">
-      <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
-      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
-      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
+      <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png" alt="Add To Favourites" title="Add To Favourites">
+      <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png" alt="Remove From Favourites" title="Remove From Favourites">
+      <img v-on:click="updateLocation" src="../assets/update.png" alt="Update Location" title="Update Location">
+      <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png" alt="Create Route To Plaque" title="Create Route To Plaque">
+      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
     </div>
     <p v-if="location.title">{{location.title | upperCase}}</p>
     <p v-if="location.inscription">{{location.inscription | capitalize}}</p>
     <p v-if="location.erected_at">{{location.erected_at}}</p>
+    <p v-if="!location.latitude || !location.longitude">No Coordinates For This Plaque</p>
   </div>
 </template>
 
@@ -58,6 +58,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  cursor: pointer;
 }
 
 img{

@@ -7,7 +7,8 @@
     <div id="search-container" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
       <PlaqueSearch :locations="locations" />
     </div>
-    <div id="sidebar-components">
+
+    <div id="sidebar-components" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
       <div id="details-container" v-if="this.show === 'details'">
         <PlaqueDetails :location="location" :favourites="favourites"/>
       </div>
@@ -103,12 +104,12 @@ export default {
     toggleMenu: function() {
       eventBus.$emit('move-toggle-button')
     },
-    toggleMenu() {
-      document.getElementById("sidebar-container").classList.toggle('active')
-    },
-    closeNav() {
-      document.getElementById("sidebar-container").style.width = "5em";
-    }
+    // toggleMenu() {
+    //   document.getElementById("sidebar-container").classList.toggle('active')
+    // },
+    // closeNav() {
+    //   document.getElementById("sidebar-container").style.width = "5em";
+    // }
   }
 
 }

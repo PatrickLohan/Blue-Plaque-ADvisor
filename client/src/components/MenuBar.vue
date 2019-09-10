@@ -1,15 +1,12 @@
 <template lang="html">
   <div id="menu-bar">
     <div id="main-menu" :class="toggled ? 'hide' : 'show'">
-
-
-    <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="">
-    <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="">
-    <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="">
+      <img v-on:click="show('home')" id="menu-icon" src="../assets/home.png" alt="Home" title="Home">
+      <img v-on:click="show('details')" id="menu-icon" src="../assets/details.png" alt="Details" title="Details">
+      <img v-on:click="show('favourites')" id="menu-icon" src="../assets/favourites.png" alt="Favourites" title="Favourites">
     </div>
-    <!-- <div id="menu-toggle"> -->
-      <img v-on:click="toggledMenu" :class="toggled ? 'hide' : 'show'" id="menu-toggle" src="../assets/left-arrow.png" alt="">
-    <!-- </div> -->
+
+    <img v-on:click="toggledMenu" :class="toggled ? 'hide' : 'show'" id="menu-toggle" src="../assets/left-arrow.png" alt="Toggle Menu" title="Toggle Menu">
   </div>
 </template>
 
@@ -28,15 +25,23 @@ export default {
       eventBus.$emit('option-selected', show)
     },
     toggledMenu(){
-      this.toggled = !this.toggled;
-      eventBus.$emit('toggle-sidebar-on', 'toggle')
-      eventBus.$emit('option-selected', 'none')
+      if (!this.toggled) {
+        this.toggled = !this.toggled;
+        eventBus.$emit('toggle-sidebar-on', 'toggle')
+        eventBus.$emit('option-selected', 'none')
+      } else if (this.toggled) {
+        this.toggled = !this.toggled;
+        eventBus.$emit('toggle-sidebar-on', 'toggle')
+        eventBus.$emit('option-selected', 'home')
+      }
+
     }
   }
 }
 </script>
 
 <style lang="css" scoped>
+
 #menu-bar {
   display: flex;
   justify-content: space-around;
@@ -50,11 +55,12 @@ export default {
   cursor: pointer;
 }
 
-#menu-icon:hover {
+#menu-icon:hover, #menu-toggle:hover {
   border-bottom: 3px solid #477CDE;
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;
   margin-bottom: 0px;
+  cursor: pointer;
 }
 
 #main-menu.show {
