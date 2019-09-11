@@ -8,7 +8,7 @@
     <img v-on:click="show('favourites')" id="menu-favourites" class="menu-icon" src="../assets/favourites.png" alt="favourites" title="See your favourites list">
     </div>
 
-    <img v-on:click="toggledMenu" :class="toggled ? 'hide' : 'show'" id="menu-toggle" src="../assets/left-arrow.png" alt="Toggle Menu" title="Toggle Menu">
+    <img v-on:click="toggledMenu" :class="toggled ? 'hide' : 'show'" id="menu-toggle" class="menu-icon" src="../assets/toggle.png" alt="Toggle Menu" title="Toggle Menu">
   </div>
 </template>
 
