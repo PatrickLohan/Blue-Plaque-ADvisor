@@ -1,4 +1,5 @@
 <template lang="html">
+  <!-- toggle sidebar menu -->
   <div id="sidebar-container" :class="toggled ? 'hide' : 'show'" v-on:click="toggleMenu">
     <div id="top-bar">
     <MenuBar />
