@@ -1,10 +1,9 @@
 <template lang="html">
   <div v-if="conditionShow" id="footer-bar">
-    <p>Github links: </p>
-    <a href="https://github.com/bmac110">Billy</a>
-    <a href="https://github.com/PadraigLeoghain">Patrick</a>
-    <a href="https://github.com/allan8362">Allan</a>
-    <a href="https://github.com/DianeEugenie">Diane</a>
+    <img href="https://github.com/bmac110" src="../assets/github.png" class="github-icon" alt="Billy's github" title="Billy's github">
+    <img href="https://github.com/PadraigLeoghain" src="../assets/github.png" class="github-icon" alt="Patrick's github" title="Patrick's github">
+    <img href="https://github.com/allan8362" src="../assets/github.png" class="github-icon" alt="Allan's github" title="Allan's github">
+    <img href="https://github.com/DianeEugenie" src="../assets/github.png" class="github-icon" alt="Diane's github" title="Diane's github">
   </div>
 </template>
 
@@ -32,9 +31,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-*{
-  font-size: 10px;
+
+.github-icon{
+  width: 1.5em;
+  height: 1.5em;
 }
+
 #footer-bar{
   background-color: #FF903F;
   padding: 10px;
