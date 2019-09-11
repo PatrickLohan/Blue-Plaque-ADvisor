@@ -2,6 +2,7 @@
   <div id="glasgowMap">
       {{showLocations()}}
   </div>
+
 </template>
 
 <script>
