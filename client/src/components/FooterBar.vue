@@ -1,5 +1,5 @@
 <template lang="html">
-  <div id="footer-bar">
+  <div v-if="conditionShow" id="footer-bar">
     <p>Github links: </p>
     <a href="https://github.com/bmac110">Billy</a>
     <a href="https://github.com/PadraigLeoghain">Patrick</a>
@@ -9,7 +9,25 @@
 </template>
 
 <script>
+import {eventBus} from "@/main.js";
+
 export default {
+  data(){
+    return {
+      show: null
+    }
+  },
+  mounted(){
+    eventBus.$on('option-selected', (value) => {
+      this.show = value
+    })
+  },
+  computed: {
+    conditionShow(){
+      this.show;
+      return this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null;
+    }
+  }
 }
 </script>
 

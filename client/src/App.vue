@@ -34,8 +34,6 @@ export default {
     eventBus.$on('location-selected', (location) => {
       let foundLocation = this.locations.filter(plaque => location.lat === plaque.latitude && location.lng === plaque.longitude);
       this.selectedLocation = foundLocation[0];
-
-
     })
     eventBus.$on('selected-location', (location) => {
       this.selectedLocation = location
@@ -70,11 +68,11 @@ body {
     background-color: #477CDE;
     border: 1px solid white;
     box-shadow: inset 0 0 3px white;
+    align-items: flex-start;
     text-align: center;
     height: 80px;
     overflow: scroll;
     display: flex;
-    align-items: center;
     border-top-right-radius: 0;
 }
 .leaflet-popup-tip {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js';
+import {eventBus} from '@/main.js';
 import PlaqueService from '@/services/PlaqueService'
 import L from 'leaflet';
 import 'leaflet-routing-machine';
@@ -31,6 +31,9 @@ export default {
   },
   mounted() {
     this.glasgowMap = L.map('glasgowMap');
+    this.glasgowMap.setView(this.center, this.zoom);
+    this.glasgowMap.options.minZoom = 11;
+    L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
 
     // Listener for clicks on new location
     this.glasgowMap.addEventListener('dblclick', (e) => {
@@ -47,12 +50,7 @@ export default {
     );
     // end of listener
 
-    this.glasgowMap.setView(this.center, this.zoom);
-    this.glasgowMap.options.minZoom = 11;
-    L.tileLayer(this.url, {attribution: this.attribution}).addTo(this.glasgowMap);
-
-    // ROUTE SETTER
-
+    // ROUTING MACHINE AND GEOLOCATION
     L.control.locate().addTo(this.glasgowMap);
 
     let control = L.Routing.control({
@@ -63,6 +61,7 @@ export default {
       })
     }).addTo(this.glasgowMap);
 
+    //Your location as start point
     this.glasgowMap.locate()
     .on('locationfound', function(e) {
 
@@ -74,7 +73,7 @@ export default {
       control.spliceWaypoints(0, 1, beginLocation)
     });
 
-//To Several locations
+    //Plan Favourites Tour
     eventBus.$on('tour-locations', (location) => {
 
       let counter = 1;
@@ -89,13 +88,7 @@ export default {
       })
 
     });
-
-
-
-
-
-
-// To Just One Location
+    // Route to a specific plaque
     eventBus.$on('route-end', (endLocation) => {
 
       let endLatLng = {
@@ -108,30 +101,24 @@ export default {
         control.spliceWaypoints(1, 1)
       })
     });
-
-
-
-
-  }
-    // TESTING FOR ROUTE END
-  ,
+  },
   methods: {
     showLocations(){
       for (let i = 0; i < this.locations.length; i++) {
         if (this.locations[i].latitude || this.locations[i].longitude !== null) {
-          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title, alt: this.locations[i].title, riseOnHover: true})
+          L.marker([this.locations[i].latitude, this.locations[i].longitude], {title: this.locations[i].title.capitalize, alt: this.locations[i].title, riseOnHover: true})
           .addTo(this.glasgowMap)
-          .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title + "</b><br />"
+          .bindPopup("<div id=" + this.locations[i]._id + " class=" + this.locations[i].colour_name + "><b>" + this.locations[i].title.toUpperCase() + "</b><br />"
           + this.locations[i].address + "</div>", {maxWidth: 200, minWidth: 200, offset: [-121, 138]})
           .on("click", function(marker) {
             let location = marker.latlng;
             eventBus.$emit('location-selected', location)
             eventBus.$emit('option-selected', 'details')
+            eventBus.$emit('show-toggle', false)
           });
         }
       }
     },
-
     addLocation(coords) {
       const payload = {
         latitude: coords[0],
@@ -141,7 +128,6 @@ export default {
       eventBus.$emit('location-added', payload);
       eventBus.$emit('option-selected', 'update');
     }
-
   }
 }
 </script>
