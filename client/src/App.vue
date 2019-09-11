@@ -14,7 +14,6 @@ import VueMap from './components/VueMap.vue'
 import SideBar from '@/components/SideBar'
 import PlaqueService from '@/services/PlaqueService'
 import PlaqueSearch from '@/components/PlaqueSearch'
-import SidebarToggle from '@/components/SidebarToggle'
 
 export default {
   name: 'app',
@@ -27,8 +26,7 @@ export default {
   components: {
     VueMap,
     SideBar,
-    PlaqueSearch,
-    SidebarToggle
+    PlaqueSearch
   },
   mounted(){
     this.fetchData();
