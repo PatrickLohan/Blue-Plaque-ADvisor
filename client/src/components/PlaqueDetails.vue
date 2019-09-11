@@ -1,11 +1,11 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
     <div id="mini-buttons">
-      <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png">
-      <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png">
-      <img v-on:click="updateLocation" src="../assets/update.png">
-      <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
-      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
+      <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png" alt="Favourite" title="Favourite this plaque">
+      <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png" alt="Unfavourite" title="Remove as favourite">
+      <img v-on:click="updateLocation" src="../assets/update.png" alt="Update plaque details" title="Update plaque details">
+      <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png" alt="Directions" title="Show me the way">
+      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png" alt="Clear route" title="Clear route">
       <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
     </div>
     <p>{{location.title}}</p>
