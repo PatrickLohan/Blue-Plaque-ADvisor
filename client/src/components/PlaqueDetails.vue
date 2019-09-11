@@ -6,8 +6,8 @@
       <img v-on:click="updateLocation" src="../assets/update.png" alt="Update plaque details" title="Update plaque details">
       <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png" alt="Directions" title="Show me the way">
       <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png" alt="Clear route" title="Clear route">
-      <h3 v-on:click="moreInfo" v-if="location.people.length">More Info!</h3>
-      <h3 v-on:click="deleteLocation(location._id)">Delete</h3>
+      <img v-on:click="moreInfo" v-if="location.people.length" src="../assets/wiki-link.png" alt="wikipedia" title="More info on wikipedia!">
+      <img v-on:click="deleteLocation(location._id)" src="../assets/delete.png" alt="Delete this plaque" title="Delete this plaque">
     </div>
     <p v-if="location.title">{{location.title | upperCase}}</p>
     <h3>Inscription</h3>
