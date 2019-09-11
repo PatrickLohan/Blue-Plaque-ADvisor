@@ -8,7 +8,7 @@
       What is a plaque? Why are they placed where they are?
     </p>
     <p>
-      Well, a plaque is a sign that is installed in a public place to commemorate a historical connection between that location, a significant event in history or a famous person. It is a marker of history!
+      Well, a plaque is a sign that is installed in a public place to commemorate a historical connection between that location, a significant event in history or a famous person. It is a marker of history! You can put up a site for plaque nomination in Scotland through <a href="https://www.historicenvironment.scot/about-us/what-we-do/commemorative-plaque-scheme/#overview_tab">Historic Environment Scotland</a>.
     </p>
     <p>
       We have used the amazing database of <a href="https://openplaques.org/">Open Plaques</a> which is a community-based project made up of volunteers who go out and about to discover, curate and catalogue commemorative plaques and historical markers throughout the world.
@@ -21,6 +21,9 @@
     </p>
     <p>
       By the way! If you notice one that is not on the map? Just double click the location, fill in the details in the form and voil&agrave;, a new entry has been made!
+    </p>
+    <p>
+
     </p>
   </p>
 </div>

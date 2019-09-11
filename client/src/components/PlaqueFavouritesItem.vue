@@ -34,7 +34,7 @@ li:hover{
   text-decoration: none;
   list-style: none;
   text-align: left;
-  text-shadow: 0 0 2px #FF903F;
+  color: #FF903F;
   cursor: pointer;
 }
 </style>
