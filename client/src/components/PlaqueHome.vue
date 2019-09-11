@@ -17,7 +17,10 @@
       Our app takes you on a historic adventure through Glasgow discovering all the plaques, not just the blue ones.
     </p>
     <p>
-      But what is a plaque? Why are they placed where they are?
+      Time to Explore!
+    </p>
+    <p>
+      By the way! If you notice one that is not on the map? Just double click the location, fill in the details in the form and voil&agrave;, a new entry has been made!
     </p>
   </p>
 </div>
