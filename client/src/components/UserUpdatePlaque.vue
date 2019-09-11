@@ -6,6 +6,8 @@
     <input type="text" v-model="colour_name" value="colour_name" required>
     <textarea rows=10 v-model="inscription" value="inscription" required></textarea>
     <input type="text" v-model="address" value="address">
+    <input v-if="!this.userLocation.latitude" type="text" v-model="latitude" value="" placeholder="Enter latitude">
+    <input v-if="!this.userLocation.longitude" type="text" v-model="longitude" value="" placeholder="Enter longitude">
     <input type="submit" value="Update">
   </form>
 </div>
@@ -25,6 +27,8 @@ export default {
       colour_name: this.userLocation.colour_name,
       inscription: this.userLocation.inscription,
       address: this.userLocation.address,
+      latitude: "",
+      longitude: "",
       updatedLocation: {}
     }
   },
@@ -36,6 +40,8 @@ export default {
       this.updatedLocation["colour_name"]=this.colour_name
       this.updatedLocation["inscription"]=this.inscription
       this.updatedLocation["address"]=this.address
+      this.updatedLocation["latitude"]=this.latitude
+      this.updatedLocation["longitude"]=this.longitude
       PlaqueService.updateLocation(this.userLocation._id, this.updatedLocation)
       .then((res) => {
         this.title = this.subjects = this.colour_name = this.inscription = this.address = ""

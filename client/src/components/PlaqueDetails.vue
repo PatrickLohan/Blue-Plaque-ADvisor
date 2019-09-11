@@ -14,7 +14,7 @@
     <p v-if="location.inscription">{{location.inscription | capitalize}}</p>
     <h3 v-if="location.erected_at">Placed on </h3>
     <p v-if="location.erected_at">{{location.erected_at | formatDate}}</p>
-    <p v-if="!location.latitude || !location.longitude">No Coordinates For This Plaque</p>
+    <p v-on:click="updateLocation" v-if="!location.latitude || !location.longitude">No Coordinates For This Plaque</p>
   </div>
 </template>
 
