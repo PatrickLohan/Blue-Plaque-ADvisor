@@ -7,7 +7,6 @@
       <img v-on:click="clearTour" v-if="this.favourites.length" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
     </div>
     <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
-
   </div>
 </template>
 
