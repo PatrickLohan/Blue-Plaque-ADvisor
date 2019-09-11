@@ -11,7 +11,7 @@
       If you notice a plaque that is not on the map, just <b>double click</b> to add a new location, fill in the details in the form and voil&agrave;, a new entry has been made!
     </p>
     <p>
-      We have used the amazing database of <a href="https://openplaques.org/">Open Plaques</a> which is a community-based project made up of volunteers who go out and about to discover, curate and catalogue commemorative plaques and historical markers throughout the world.
+      We have used the amazing database of <a target="_blank" href="https://openplaques.org/">Open Plaques</a> which is a community-based project made up of volunteers who go out and about to discover, curate and catalogue commemorative plaques and historical markers throughout the world.
     </p>
     <h4>
       What is a plaque? Why are they placed where they are?
