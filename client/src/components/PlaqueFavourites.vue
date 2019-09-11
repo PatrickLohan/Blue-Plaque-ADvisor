@@ -1,12 +1,12 @@
 <template lang="html">
   <div id="favourites-list">
-    <h2>FAVOURITES</h2>
+    <h3 v-if="!this.favourites.length">No favourites just yet!</h3>
+    <h3 v-if="this.favourites.length">FAVOURITES</h3>
     <div id="mini-buttons">
       <img v-on:click="planTour" v-if="this.favourites.length" src="../assets/directions.png" alt="Plan Favourite Tour" title="Plan Favourite Tour">
       <img v-on:click="clearTour" v-if="this.favourites.length" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
     </div>
     <PlaqueFavouritesItem v-for="(favourite, index) in this.favourites" :favourite="favourite" :key="index" />
-
   </div>
 </template>
 
@@ -53,12 +53,10 @@ export default {
 #favourites-list {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
 }
-
-h2, h3{
-  line-height: 12px;
-  text-align: center;
+h3 {
+  color: #477CDE;
 }
 
 #mini-buttons{

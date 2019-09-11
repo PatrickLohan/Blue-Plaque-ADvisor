@@ -1,4 +1,5 @@
 <template lang="html">
+  <!-- toggle sidebar menu -->
   <div id="sidebar-container" :class="toggled ? 'hide' : 'show'" v-on:click="toggleMenu">
     <div id="top-bar">
     <MenuBar />
@@ -151,7 +152,7 @@ export default {
 #favourites-container,
 #update-container,
 #home-container {
-  height: 50vh;
+  height: 60vh;
   padding: 5px;
   overflow: auto;
   display: flex;
@@ -174,10 +175,12 @@ FooterBar{
 
 #sidebar-container.show {
   width: 25vw;
+  transition: 0.3s;
 }
 
 #sidebar-container.hide {
   width: 5vw;
+  transition: 0.3s;
 }
 
 #empty-container {
