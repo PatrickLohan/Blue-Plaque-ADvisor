@@ -296,7 +296,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
             /** Display a pop-up when the user click on the inner marker. */
             showPopup: true,
             strings: {
-                title: "Show me where I am",
+                title: "Where am I?",
                 metersUnit: "meters",
                 feetUnit: "feet",
                 popup: "You are within {distance} {unit} from this point",
@@ -556,7 +556,7 @@ You can find the project at: https://github.com/domoritz/leaflet-locatecontrol
                         this._compass.setStyle(cStyle);
                     }
                 }
-                // 
+                //
             }
             if (this._compass && (!this.options.showCompass || this._compassHeading === null)) {
                 this._compass.removeFrom(this._layer);

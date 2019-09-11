@@ -1,18 +1,18 @@
 <template lang="html">
   <div id="plaque-details" v-if="location.title">
+    <div id="mini-buttons">
+      <img v-on:click="addFavourite" v-if="!this.favourites.includes(location)" src="../assets/favourites.png">
+      <img v-on:click="removeFavourite" v-if="this.favourites.includes(location)" src="../assets/dislike.png">
+      <img v-on:click="updateLocation" src="../assets/update.png">
+      <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
+      <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
+      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
+      <h3 v-on:click="moreInfo" v-if="location.people.length">More Info!</h3>
+      <h3 v-on:click="deleteLocation(location._id)">Delete</h3>
+    </div>
     <p>{{location.title}}</p>
     <p>{{location.inscription}}</p>
     <p>{{location.erected_at}}</p>
-    <div id="favourites button">
-      <h3 v-on:click="addFavourite" v-if="!this.favourites.includes(location)">Add to Favourites</h3>
-      <h3 v-on:click="removeFavourite" v-if="this.favourites.includes(location)">Remove Favourite</h3>
-      <!-- //Can we just open new tab with uri/url within the 'html' element or do we need a function? -->
-      <h3 v-on:click="updateLocation">Update Details</h3>
-      <h3 v-on:click="moreInfo" v-if="location.people.length">More Info!</h3>
-      <h3 v-on:click="deleteLocation(location._id)">Delete</h3>
-      <h3 v-on:click="goToLocation" v-if="location.latitude || location.longitude">Get Me Here</h3>
-      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
-    </div>
   </div>
 </template>
 
@@ -68,6 +68,9 @@ export default {
       PlaqueService.deleteLocations(id)
       .then(response =>
       eventBus.$emit('location-deleted', id));
+    },
+      arrivedAtLocation: function(){
+        eventBus.$emit('tour-deleted');
     }
   }
 }
@@ -80,7 +83,24 @@ export default {
   max-height: inherit;
 }
 
-h3:hover {
-  color: lightgrey;
+#mini-buttons{
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+img{
+  width: 1.5em;
+  height: 1.5em;
+  padding: 1px;
+  margin-bottom: 3px;
+}
+
+img:hover {
+  border-bottom: 3px solid #477CDE;
+  border-bottom-left-radius: 10%;
+  border-bottom-right-radius: 10%;
+  margin-bottom: 0px;
 }
 </style>

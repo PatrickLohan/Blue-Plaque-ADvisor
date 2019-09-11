@@ -1,12 +1,12 @@
 <template lang="html">
-<div>
+<div id="add-form">
   <form class="addForm" v-on:submit.prevent="addLocation">
     <input type="text" v-model="title" placeholder="Plaque Title" required>
     <input type="text" v-model="subjects" placeholder="Name of Subject">
     <input type="text" v-model="colour_name" placeholder="Colour"required>
     <textarea rows=10 v-model="inscription" placeholder="Inscription" required></textarea>
     <input type="text" v-model="address" placeholder="Address">
-    <input type="submit" value="Add Location">
+    <input class="submit-button" type="submit" value="Add Location">
   </form>
 </div>
 </template>
@@ -51,5 +51,20 @@ export default {
 
 <style lang="css" scoped>
 
+#add-form{
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+}
 
+input,
+textarea {
+  border: 1px dotted grey;
+  width: 14vw;
+  margin: 5px 0;
+}
+
+input[type=submit]{
+  background-color: #FFDB3F;
+}
 </style>
