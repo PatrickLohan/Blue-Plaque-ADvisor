@@ -1,7 +1,26 @@
 <template lang="html">
   <div id="plaque-home">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
+    <h3>Welcome to Blue Plaque Adventure!</h3>
+    <p>
+      You may have noticed plaques without realizing what they are.
+    </p>
+    <p>
+      What is a plaque? Why are they placed where they are?
+    </p>
+    <p>
+      Well, a plaque is a sign that is installed in a public place to commemorate a historical connection between that location, a significant event in history or a famous person. It is a marker of history!
+    </p>
+    <p>
+      We have used the amazing database of <a href="https://openplaques.org/">Open Plaques</a> which is a community-based project made up of volunteers who go out and about to discover, curate and catalogue commemorative plaques and historical markers throughout the world.
+    </p>
+    <p>
+      Our app takes you on a historic adventure through Glasgow discovering all the plaques, not just the blue ones.
+    </p>
+    <p>
+      But what is a plaque? Why are they placed where they are?
+    </p>
+  </p>
+</div>
 </template>
 
 <script>
@@ -11,6 +30,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+a {
+  text-decoration: none;
+  color: #477CDE;
+}
+a:hover {
+  color: #FF903F;
+}
 #plaque-home{
   overflow: auto;
 }
