@@ -30,7 +30,6 @@
 
 <script>
 
-import SidebarToggle from '@/components/SidebarToggle'
 import PlaqueSearch from '@/components/PlaqueSearch'
 import PlaqueFavourites from '@/components/PlaqueFavourites'
 import PlaqueDetails from '@/components/PlaqueDetails'
@@ -107,12 +106,6 @@ export default {
   methods: {
     toggleMenu: function() {
       eventBus.$emit('move-toggle-button')
-    },
-    toggleMenu() {
-      document.getElementById("sidebar-container").classList.toggle('active')
-    },
-    closeNav() {
-      document.getElementById("sidebar-container").style.width = "5em";
     }
   },
   computed: {
