@@ -4,10 +4,11 @@
     <MenuBar />
     </div>
 
-    <div id="search-container" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
+    <div id="search-container" v-if="conditionShow">
       <PlaqueSearch :locations="locations" />
     </div>
-    <div id="sidebar-components">
+
+    <div id="sidebar-components" v-if="conditionShow">
       <div id="details-container" v-if="this.show === 'details'">
         <PlaqueDetails :location="location" :favourites="favourites"/>
       </div>
@@ -28,14 +29,15 @@
 
 <script>
 
-import PlaqueSearch from './PlaqueSearch'
-import PlaqueFavourites from './PlaqueFavourites'
-import PlaqueDetails from './PlaqueDetails'
-import UserUpdatePlaque from './UserUpdatePlaque'
-import UserAddPlaque from './UserAddPlaque'
-import MenuBar from './MenuBar'
-import FooterBar from './FooterBar'
-import PlaqueHome from './PlaqueHome'
+import SidebarToggle from '@/components/SidebarToggle'
+import PlaqueSearch from '@/components/PlaqueSearch'
+import PlaqueFavourites from '@/components/PlaqueFavourites'
+import PlaqueDetails from '@/components/PlaqueDetails'
+import UserUpdatePlaque from '@/components/UserUpdatePlaque'
+import UserAddPlaque from '@/components/UserAddPlaque'
+import MenuBar from '@/components/MenuBar'
+import FooterBar from '@/components/FooterBar'
+import PlaqueHome from '@/components/PlaqueHome'
 import {eventBus} from '@/main.js'
 
 
@@ -75,6 +77,9 @@ export default {
     eventBus.$on('toggle-sidebar-on', (toggle) => {
       this.toggled = !this.toggled;
     }),
+    eventBus.$on('show-toggle', (value) => {
+      this.toggled = value;
+    }),
     eventBus.$on('update-location', (userLocation) => {
       this.userLocation = userLocation;
     }),
@@ -107,6 +112,12 @@ export default {
     },
     closeNav() {
       document.getElementById("sidebar-container").style.width = "5em";
+    }
+  },
+  computed: {
+    conditionShow(){
+      this.show;
+      return this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null;
     }
   }
 

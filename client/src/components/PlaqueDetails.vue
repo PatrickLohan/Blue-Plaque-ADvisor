@@ -6,21 +6,23 @@
       <img v-on:click="updateLocation" src="../assets/update.png">
       <img v-on:click="goToLocation" v-if="location.latitude || location.longitude" src="../assets/directions.png">
       <img v-on:click="arrivedAtLocation" v-if="location.latitude || location.longitude" src="../assets/flag.png">
-      <h4 v-if="!location.latitude || !location.longitude">Oh no! Please add coordinates</h4>
       <h3 v-on:click="moreInfo" v-if="location.people.length">More Info!</h3>
       <h3 v-on:click="deleteLocation(location._id)">Delete</h3>
     </div>
-    <p>{{location.title}}</p>
-    <p>{{location.inscription}}</p>
-    <p>{{location.erected_at}}</p>
+    <p v-if="location.title">{{location.title | upperCase}}</p>
+    <h3>Inscription</h3>
+    <p v-if="location.inscription">{{location.inscription | capitalize}}</p>
+    <h3 v-if="location.erected_at">Placed on </h3>
+    <p v-if="location.erected_at">{{location.erected_at | formatDate}}</p>
+    <p v-if="!location.latitude || !location.longitude">No Coordinates For This Plaque</p>
   </div>
 </template>
 
 <script>
-import PlaqueSearch from './PlaqueSearch'
+import PlaqueSearch from '@/components/PlaqueSearch'
 import PlaqueService from '@/services/PlaqueService.js'
 import VueMap from '@/components/VueMap.vue'
-import {eventBus} from '../main.js'
+import {eventBus} from '@/main.js'
 
 export default {
   props: ['location', 'favourites'],
@@ -77,6 +79,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h3 {
+  margin: 0;
+}
 #plaque-details {
   display: flex;
   flex-direction: column;
@@ -88,6 +93,7 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  cursor: pointer;
 }
 
 img{
