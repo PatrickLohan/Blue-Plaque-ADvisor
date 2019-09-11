@@ -151,7 +151,7 @@ export default {
 #favourites-container,
 #update-container,
 #home-container {
-  height: 50vh;
+  height: 60vh;
   padding: 5px;
   overflow: auto;
   display: flex;
