@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="favourites-list">
-    <h2>FAVOURITES</h2><hr>
+    <h2>FAVOURITES</h2>
     <div id="mini-buttons">
       <img v-on:click="planTour" v-if="this.favourites.length" src="../assets/directions.png" alt="Plan Favourite Tour" title="Plan Favourite Tour">
       <img v-on:click="clearTour" v-if="this.favourites.length" src="../assets/flag.png" alt="Arrived At Location" title="Arrived At Location">
@@ -56,7 +56,7 @@ export default {
   align-items: stretch;
 }
 
-h2{
+h2, h3{
   line-height: 12px;
   text-align: center;
 }

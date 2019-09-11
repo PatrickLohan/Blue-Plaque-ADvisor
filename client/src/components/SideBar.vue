@@ -4,11 +4,11 @@
     <MenuBar />
     </div>
 
-    <div id="search-container" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
+    <div id="search-container" v-if="conditionShow">
       <PlaqueSearch :locations="locations" />
     </div>
 
-    <div id="sidebar-components" v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">
+    <div id="sidebar-components" v-if="conditionShow">
       <div id="details-container" v-if="this.show === 'details'">
         <PlaqueDetails :location="location" :favourites="favourites"/>
       </div>
@@ -112,6 +112,12 @@ export default {
     },
     closeNav() {
       document.getElementById("sidebar-container").style.width = "5em";
+    }
+  },
+  computed: {
+    conditionShow(){
+      this.show;
+      return this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null;
     }
   }
 

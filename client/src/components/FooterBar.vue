@@ -1,6 +1,6 @@
 <template lang="html">
   <div id="footer-bar">
-    <p v-if="this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null ">footer dummy text</p>
+    <p v-if="conditionShow">footer dummy text</p>
   </div>
 </template>
 
@@ -17,6 +17,12 @@ export default {
     eventBus.$on('option-selected', (value) => {
       this.show = value
     })
+  },
+  computed: {
+    conditionShow(){
+      this.show;
+      return this.show === 'details' || this.show === 'home' || this.show === 'favourites' || this.show === 'update' || this.show === null;
+    }
   }
 }
 </script>
