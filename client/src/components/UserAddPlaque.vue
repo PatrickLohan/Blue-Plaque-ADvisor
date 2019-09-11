@@ -35,6 +35,7 @@ export default {
       this.userLocation["colour_name"]=this.colour_name
       this.userLocation["inscription"]=this.inscription
       this.userLocation["address"]=this.address
+      this.userLocation["people"]=[]
       PlaqueService.postLocations(this.userLocation)
       .then((res) => {
         this.title = this.subjects = this.colour_name = this.inscription = this.address = ""

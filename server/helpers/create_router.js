@@ -1,5 +1,6 @@
 const express = require('express');
 const ObjectID = require('mongodb').ObjectID;
+const fetch = require('node-fetch');
 
 const createRouter = function (collection) {
 
@@ -44,6 +45,15 @@ const createRouter = function (collection) {
      collection.deleteOne({_id: ObjectID(id)})
      .then(result => res.json(result));
    });
+
+   // Gets extra api info
+   // done as POST as other server didnt like GET
+   router.post('/plaque-data', (req, res) => {
+     let url = req.body.uri;
+     fetch(url)
+     .then(jsonData => jsonData.json())
+     .then(data => res.json(data))
+   })
 
    return router;
 };

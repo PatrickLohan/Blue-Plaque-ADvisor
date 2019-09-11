@@ -6,6 +6,9 @@ export default {
     return fetch(baseURL)
     .then(res => res.json())
   },
+
+  // used to get further api info
+  // done as POST as other server didnt like GET
   postLocations(payload){
     return fetch(baseURL, {
       method: 'POST',
@@ -14,11 +17,13 @@ export default {
     })
     .then(res => res.json())
   },
+
   deleteLocations(id){
     return fetch(baseURL + id, {
       method: 'DELETE'
     })
   },
+  
   updateLocation(id, location) {
     return fetch(baseURL + id, {
       method: 'PUT',
