@@ -48,7 +48,7 @@ form{
 }
 
 input, select{
-  width: 14vw;
+  width: 20vw;
   cursor: pointer;
 }
 

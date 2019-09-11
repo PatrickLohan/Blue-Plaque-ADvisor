@@ -55,7 +55,7 @@ export default {
   background-color: #FF903F;
   align-items: center;
 }
-.menu-icon{
+.menu-icon, #menu-toggle {
   width: 3em;
   height: 3em;
   margin: 5px 10px;
@@ -63,7 +63,7 @@ export default {
 }
 
 .menu-icon:hover,
-#menu-toggle {
+#menu-toggle:hover {
   border-bottom: 3px solid #477CDE;
   border-bottom-left-radius: 10%;
   border-bottom-right-radius: 10%;

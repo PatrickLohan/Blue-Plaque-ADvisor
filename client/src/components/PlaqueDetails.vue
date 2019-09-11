@@ -62,7 +62,12 @@ export default {
       .then(res => res.json())
       .then(data => {
         this.furtherInfo = data
-        window.open(this.furtherInfo.wikipedia_url, '_blank')
+        if (this.furtherInfo.wikipedia_url){
+          window.open(this.furtherInfo.wikipedia_url, '_blank')
+        } else {
+          window.alert("Sorry we have no link for this.")
+        }
+
       })
       // see also PlaqueService.js and create_router.js
     },

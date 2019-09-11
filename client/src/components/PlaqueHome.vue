@@ -1,7 +1,29 @@
 <template lang="html">
   <div id="plaque-home">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
+    <h3>Blue Plaque Adventure!</h3>
+    <p>
+      You may have noticed plaques without realizing what they are.
+    </p>
+    <p>
+      What is a plaque? Why are they placed where they are?
+    </p>
+    <p>
+      Well, a plaque is a sign that is installed in a public place to commemorate a historical connection between that location, a significant event or a famous person. It is a marker of history! You can put up a site for plaque nomination in Scotland through <a href="https://www.historicenvironment.scot/about-us/what-we-do/commemorative-plaque-scheme/#overview_tab">Historic Environment Scotland</a>. You can't nominate yourself though, one of the criteria is that you have to be dead for at least 20 years!
+    </p>
+    <p>
+      We have used the amazing database of <a href="https://openplaques.org/">Open Plaques</a> which is a community-based project made up of volunteers who go out and about to discover, curate and catalogue commemorative plaques and historical markers throughout the world.
+    </p>
+    <p>
+      Our app takes you on a historic adventure through Glasgow discovering all the plaques, not just the blue ones.
+    </p>
+    <p class="p-blue">
+      Time to Explore!
+    </p>
+    <p>
+      By the way! If you notice one that is not on the map? Just double click the location, fill in the details in the form and voil&agrave;, a new entry has been made!
+    </p>
+  </p>
+</div>
 </template>
 
 <script>
@@ -11,7 +33,21 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+h3, .p-blue {
+  color: #477CDE;
+}
+a {
+  text-decoration: none;
+  color: #477CDE;
+}
+a:hover {
+  color: #FF903F;
+}
 #plaque-home{
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
