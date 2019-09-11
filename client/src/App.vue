@@ -1,8 +1,10 @@
 <template>
   <div id="app">
+
     <SidebarToggle/>
     <SideBar :location="selectedLocation" :locations="locations"/>
     <VueMap :locations="locations"/>
+    <img id="logo" src="./assets/gbpad.png" alt="">
   </div>
 </template>
 
@@ -51,6 +53,14 @@ export default {
 <style>
 body {
   margin: 0;
+}
+
+#logo {
+  height: 11em;
+  width: 11em;
+  position: absolute;
+  right: 50px;
+  z-index: 999;
 }
 
 #app {
