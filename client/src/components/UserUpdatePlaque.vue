@@ -1,5 +1,6 @@
 <template lang="html">
 <div id="update-form">
+  <h3>Update location</h3>
   <form class="updateForm" v-on:submit.prevent="updateLocation">
     <input class="form-item" type="text" v-model="title" value="title" required>
     <input type="text" v-model="subjects" value="subjects">
@@ -65,7 +66,7 @@ export default {
 input,
 textarea {
   border: 1px dotted grey;
-  width: 14vw;
+  width: 18vw;
   margin: 5px 0;
 }
 
@@ -73,4 +74,7 @@ input[type=submit]{
   background-color: #FFDB3F;
 }
 
+h3 {
+  color: #477CDE;
+}
 </style>

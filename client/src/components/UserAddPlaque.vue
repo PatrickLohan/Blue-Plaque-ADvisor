@@ -1,5 +1,6 @@
 <template lang="html">
 <div id="add-form">
+  <h3>Add Location</h3>
   <form class="addForm" v-on:submit.prevent="addLocation">
     <input type="text" v-model="title" placeholder="Plaque Title" required>
     <input type="text" v-model="subjects" placeholder="Name of Subject">
@@ -60,11 +61,16 @@ export default {
 input,
 textarea {
   border: 1px dotted grey;
-  width: 14vw;
+  width: 18vw;
   margin: 5px 0;
 }
 
 input[type=submit]{
   background-color: #FFDB3F;
 }
+
+h3 {
+  color: #477CDE;
+}
+
 </style>
