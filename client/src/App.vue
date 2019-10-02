@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-
-    <SidebarToggle/>
     <SideBar :location="selectedLocation" :locations="locations"/>
     <VueMap :locations="locations"/>
     <img id="logo" src="./assets/gbpad.png" alt="">
