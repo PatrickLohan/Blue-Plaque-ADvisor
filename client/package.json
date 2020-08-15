@@ -8,17 +8,17 @@
     "generate-icons": "vsvg -s ./svg-icons -t ./src/compiled-icons"
   },
   "dependencies": {
-    "core-js": "^2.6.5",
-    "leaflet": "^1.5.1",
+    "core-js": "^2.6.11",
+    "leaflet": "^1.6.0",
     "leaflet-routing-machine": "^3.2.12",
     "leaflet.locatecontrol": "^0.67.0",
     "lrm-graphhopper": "^1.3.0",
-    "moment": "^2.24.0",
-    "vue": "^2.6.10"
+    "moment": "^2.27.0",
+    "vue": "^2.6.11"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-service": "^4.3.0",
-    "vue-template-compiler": "^2.6.10"
+    "@vue/cli-plugin-babel": "^3.12.1",
+    "@vue/cli-service": "^4.5.3",
+    "vue-template-compiler": "^2.6.11"
   }
 }
